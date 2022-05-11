@@ -13,6 +13,12 @@ section {
 section>div {
     grid-column: auto / auto;
 }
+a>img{
+    display: flex;
+    width: 36px;
+    height: 36px;
+    background-color: aqua;
+}
 
 h1 {
     color: white;
