@@ -1,0 +1,25 @@
+Body {
+    background-color: #37474f;
+}
+
+section {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    background-color: red;
+}
+
+section>div {
+    grid-column: auto / auto;
+}
+
+h1 {
+    color: white;
+    text-decoration: underline;
+    justify-content: center;
+    display: flex;
+    text-transform: capitalize;
+    font-size: 3em;
+    font-weight: bold;
+}
