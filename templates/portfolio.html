@@ -3,13 +3,12 @@
 <head>
     <title>Portfolio</title>
     <!--- Load css. -->
-    <link type="text/css" rel="stylesheet" href='../css/style.css' />
-    <link type="text/css" rel="stylesheet" href='../css/uikit.css' />
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
     <!--- Load google marterial icons. -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" crossorigin>
     <!--- Load javascript code -->
-    <script src='../js/script.js' ></script>
-    <script src='../js/uikit.js' ></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}" crossorigin></script>
+    <script src="{{ url_for('static', filename='js/uikit.min.js') }}" crossorigin></script>
 
 </head>
 <body>
@@ -17,13 +16,13 @@
 
         <ul class="uk-slideshow-items">
             <li>
-                <img src="http://unsplash.it/300/300?gravity=center" alt="" uk-cover>
+                <img src="http://unsplash.it/800/800?gravity=center" alt="" uk-cover>
             </li>
             <li>
-                <img src="http://unsplash.it/300/300?gravity=center" alt="" uk-cover>
+                <img src="http://unsplash.it/801/800?gravity=center" alt="" uk-cover>
             </li>
             <li>
-                <img src="http://unsplash.it/300/300?gravity=center" alt="" uk-cover>
+                <img src="http://unsplash.it/800/801?gravity=center" alt="" uk-cover>
             </li>
         </ul>
 
