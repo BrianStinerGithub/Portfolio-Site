@@ -3,25 +3,36 @@
 <head>
     <title>Portfolio</title>
     <!--- Load css. -->
-    <link type="text/css" rel="stylesheet" href="style.css" crossorigin/>
+    <link type="text/css" rel="stylesheet" href='../css/style.css' />
+    <link type="text/css" rel="stylesheet" href='../css/uikit.css' />
     <!--- Load google marterial icons. -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" crossorigin>
     <!--- Load javascript code -->
-    <script src="script.js" crossorigin></script>
+    <script src='../js/script.js' ></script>
+    <script src='../js/uikit.js' ></script>
 
 </head>
 <body>
-    <h1>Brian Stiner</h1>
-    <section class="links">
-        <a href="https://www.linkedin.com/in/mathmagicmachine/"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Linkedin.svg" alt="linkedin"/></a>
-        <a href="https://www.github.com/BrianStinerGithub/"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="github"/></a>
-    </section>
-    
-    <section class="main">
-        <div class="card">
-            <img src="http://unsplash.it/300/300?gravity=center" />
-            <div class="material-icons" onclick="LikeButtonClicked(this)" id="likeButton"">thumb_up</div>
-        </div>
-    </section>
+    <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow>
+
+        <ul class="uk-slideshow-items">
+            <li>
+                <img src="http://unsplash.it/300/300?gravity=center" alt="" uk-cover>
+            </li>
+            <li>
+                <img src="http://unsplash.it/300/300?gravity=center" alt="" uk-cover>
+            </li>
+            <li>
+                <img src="http://unsplash.it/300/300?gravity=center" alt="" uk-cover>
+            </li>
+        </ul>
+
+        <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous
+            uk-slideshow-item="previous"></a>
+        <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next
+            uk-slideshow-item="next"></a>
+        <div class="material-icons" id="likeButton"">thumb_up</div>
+
+    </div>
 
 </body>
