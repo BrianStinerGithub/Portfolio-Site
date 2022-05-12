@@ -1,37 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Portfolio</title>
-    <!--- Load css. -->
-    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
-    <!--- Load google marterial icons. -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" crossorigin>
-    <!--- Load javascript code -->
-    <script src="{{ url_for('static', filename='js/script.js') }}" crossorigin></script>
-    <script src="{{ url_for('static', filename='js/uikit.min.js') }}" crossorigin></script>
+{% extends "base.html" %}
+{% block title %}Portfolio{% endblock %}
+{% block content %}
+    <section class="main">
+        <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow>
 
-</head>
-<body>
-    <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow>
+            <ul class="uk-slideshow-items">
+                <li>
+                    <img src="http://unsplash.it/800/800?gravity=center" alt="" uk-cover>
+                </li>
+                <li>
+                    <img src="http://unsplash.it/801/800?gravity=center" alt="" uk-cover>
+                </li>
+                <li>
+                    <img src="http://unsplash.it/800/801?gravity=center" alt="" uk-cover>
+                </li>
+            </ul>
 
-        <ul class="uk-slideshow-items">
-            <li>
-                <img src="http://unsplash.it/800/800?gravity=center" alt="" uk-cover>
-            </li>
-            <li>
-                <img src="http://unsplash.it/801/800?gravity=center" alt="" uk-cover>
-            </li>
-            <li>
-                <img src="http://unsplash.it/800/801?gravity=center" alt="" uk-cover>
-            </li>
-        </ul>
+            <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous
+                uk-slideshow-item="previous"></a>
+            <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next
+                uk-slideshow-item="next"></a>
+            <div class="material-icons" id="likeButton"">thumb_up</div>
 
-        <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous
-            uk-slideshow-item="previous"></a>
-        <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next
-            uk-slideshow-item="next"></a>
-        <div class="material-icons" id="likeButton"">thumb_up</div>
-
-    </div>
-
-</body>
+        </div>
+    </section>
+{% endblock %}
