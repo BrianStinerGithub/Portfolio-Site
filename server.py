@@ -1,16 +1,16 @@
-from flask import Flask
+from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
 #homepage is portfolio.html
 @app.route('/')
 def portfolio():
-    return app.send_static_file('portfolio.html')
+    return render_template('portfolio.html')
 
 @app.route('/about')
 def about():
-    return app.send_static_file('about.html')
+    return render_template('about.html')
 
 @app.route('/contact')
 def contact():
-    return app.send_static_file('contact.html')
+    return render_template('contact.html')
