@@ -1,6 +1,4 @@
-from mailbox import MaildirMessage
-from flask import Flask, render_template, request, redirect, url_for
-
+from flask import Flask, render_template
 app = Flask(__name__)
 
 
@@ -18,8 +16,10 @@ def contact():
 
 @app.route('/contact', methods=['POST'])
 def send_email():
-    name = request.form['name']
-    email = request.form['email']
-    message = request.form['message']
-    print(name, email, message)
-    return redirect(url_for('contact'))
+    return render_template('thankyou.html')
+
+
+
+
+# if __name__ == '__main__':
+#     app.run(debug=True)

@@ -2,11 +2,9 @@
 @import url("uikit.css");
 
 
-Body {
-    background-color: #37474f;
-}
+
 h1 {
-    color: white;
+    color: rgb(136, 136, 136);
     text-decoration: underline;
     justify-content: center;
     display: flex;
@@ -14,25 +12,12 @@ h1 {
     font-size: 3em;
     font-weight: bold;
 }
-section.links {
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    gap: 10px;
-    margin-top: -1em;
-}
-section.links > a > img{
-    width: 36px;
-    height: 36px;
-    border-radius: 20px;
-    background-color: rgba(226, 226, 226, 0.441);
-}
 
 section.main {
     width: 100%;
     display: flex;
     justify-content: center;
-    background-color: red;
+    background-color: rgb(47, 41, 65);
 }
 section.main>div {
     width: 75%;

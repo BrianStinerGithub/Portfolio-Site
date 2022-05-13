@@ -5,15 +5,23 @@
         <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow>
 
             <ul class="uk-slideshow-items">
+                {% for project in portfolio %}
                 <li>
-                    <img src="http://unsplash.it/800/800?gravity=center" alt="" uk-cover>
+                    <img class="uk-panel" src="http://unsplash.it/800/800?gravity=center" alt="{{ project.title }}">
+                    <a href="{{ project.codelink }}" target="_blank">
+                        <img src="{{ github_icon }}" alt="Github" />
+                    </a>
+                    {% if project.link != "" %}
+                    <a href="{{ project.link }}" target="_blank">
+                        <img src="{{ live_icon }}" alt="Live" />
+                    </a>
+                    {% endif %}
+                    <div class="uk-position-center uk-panel">
+                        <h1 class="uk-slideshow-title">{{ project.title }}</h1>
+                        <p class="uk-slideshow-description">{{ project.description }}</p>
+                    </div>
                 </li>
-                <li>
-                    <img src="http://unsplash.it/801/800?gravity=center" alt="" uk-cover>
-                </li>
-                <li>
-                    <img src="http://unsplash.it/800/801?gravity=center" alt="" uk-cover>
-                </li>
+                {% endfor %}
             </ul>
 
             <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous

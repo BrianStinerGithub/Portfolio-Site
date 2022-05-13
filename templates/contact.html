@@ -1,59 +1,61 @@
 {% extends "base.html" %}
 {% block title %}Contact{% endblock %}
 {% block content %}
-    <!-- links to linkedin and github profiles -->
-    <section class="links">
-        <div class="uk-container">
-            <div class="uk-grid-small uk-flex-center" uk-grid>
-                <div class="uk-width-small">
-                    <a href="https://www.linkedin.com/in/mathmagicmachine/"><img
-                        src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Linkedin.svg" 
-                        alt="linkedin" />
-                    </a>
-                </div>
-                <div class="uk-width-small">
-                    <a href="https://www.github.com/BrianStinerGithub/"><img
-                        src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" 
-                        alt="github" />
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    <!-- icon link variables -->
+    {% set github_icon = 'https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg' %}
+    {% set linkedin_icon = 'https://upload.wikimedia.org/wikipedia/commons/e/e9/Linkedin_icon.svg' %}
+    {% set email_icon = 'https://upload.wikimedia.org/wikipedia/commons/5/5f/Email_Silk.svg' %}
+    {% set communication_image = 'https://i.ibb.co/6bf16Kx/communication.png' %}
     <!-- contact form sends email to me-->
-    <section class="main">
-        <div class="uk-container uk-container-small">
-            <h1>Contact</h1>
-            <form class="uk-form-stacked" action="https://formsubmit.co/BrianStinerProfessional@gmail.com" method="POST">
-                
-                <div class="uk-margin">
-                    <label class="uk-form-label" for="form-stacked-text">Name</label>
-                    <div class="uk-form-controls">
-                        <input class="uk-input" id="form-stacked-text" type="text" name="name" placeholder="Your name" required>
-                    </div>
+    <link rel="stylesheet" href="../static/css/contact.css">
+    <section class="contact">
+        <div class="left">
+            
+            <form class="uk-form-stacked" action="https://formsubmit.co/cee6c0a1a43c1d71f04af8472400587c" method="POST">
+                <h1>Send me an Email!</h1>
+                <div class="uk-form-controls">
+                    <input class="uk-input" id="form-stacked-text" type="text" name="name" placeholder="Your name" required>
+                </div>
+                <div class="uk-form-controls">
+                    <input class="uk-input" id="form-stacked-text" type="email" name="email" placeholder="Your email" required>
+                </div>
+                <div class="uk-form-controls">
+                    <textarea class="uk-textarea" id="form-stacked-text" name="message" placeholder="Your message" required></textarea>
                 </div>
 
-                <div class="uk-margin">
-                    <label class="uk-form-label" for="form-stacked-text">Email</label>
-                    <div class="uk-form-controls">
-                        <input class="uk-input" id="form-stacked-text" type="email" name="email" placeholder="Your email" required>
-                    </div>
-                </div>
-
-                <div class="uk-margin">
-                    <label class="uk-form-label" for="form-stacked-text">Message</label>
-                    <div class="uk-form-controls">
-                        <textarea class="uk-textarea" id="form-stacked-text" name="message" placeholder="Your message" required></textarea>
-                    </div>
-                </div>
-
-                <div class="uk-flex uk-flex-center">
+                <div class="center">
                     <button class="uk-button uk-button-primary" type="submit">Send</button>
                 </div>
                 <br>
 
             </form>
+        </div>
+        <div class="right">
+            
+            <section class="sociallinks">
+                <div>
+                    <a href="https://www.linkedin.com/in/mathmagicmachine/">
+                        <img src="{{ linkedin_icon }}" 
+                            alt="LinkedIn">
+                    </a>
+                </div>
+                <!-- <div>
+                    <a href="mailto:BrianStinerProfessional@gmail.com">
+                        <img src="{{ email_icon }}" 
+                            alt="Email"
+                            style="width: 100%" />
+                    </a>
+                </div> -->
+                <div>
+                    <a href="https://www.github.com/BrianStinerGithub/">
+                        <img src="{{ github_icon }}" 
+                            alt="Github" />
+                    </a>
+                </div>
+                
+            </section>
+            <img src="{{ communication_image }}" alt="communication image">
+
         </div>
     </section>
 {% endblock %}
