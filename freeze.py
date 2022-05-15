@@ -1,6 +1,6 @@
 # yaml file runs this script to create a static website
-import flask_frozen import Freezer
-import app
+from flask_frozen import Freezer
+from app import app
 
 freezer = Freezer(app)
 
