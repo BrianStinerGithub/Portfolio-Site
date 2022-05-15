@@ -1,12 +1,11 @@
 @import url("style.css");
-object, embed {
-    display: block;
-    margin: auto;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    min-height: 50em;
-    width: 100%;
-    transition: .5s;
+ul.uk-navbar-nav>li.about,
+li.about>a {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border-radius: 100% 100% 0 0;
 }
+
 section {
     background-image:
         repeating-linear-gradient(
@@ -15,17 +14,28 @@ section {
         repeating-linear-gradient(
             135deg, transparent, transparent 10px, 
             rgba(0, 0, 0, 0.1) 10px, rgba(0, 0, 0, 0.1) 20px);
-    color: rgb(136, 136, 136);
+    color: var(--dark-color);
     font-family: "Open Sans", sans-serif;
     font-size: 1.2em;
     font-weight: bold;
-    text-align: center;
     text-transform: capitalize;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
+section p {
+    margin: 0 0 1em 0;
+}
 section.aboutme {
-    margin: 0 2em;
+    margin: 0 1em;
+    background: none;
+}
+section.aboutme > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.sociallinks {
     background: none;
 }
 a > h1 {
@@ -36,6 +46,13 @@ a > h1 {
     margin-bottom: .5em;
     margin-top: .5em;
 }
+object, embed {
+    display: block;
+    margin: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    min-height: 50em;
+    width: 100%;
+}
 
 h3 {
     margin: auto;
@@ -45,9 +62,32 @@ h3 {
     text-transform: capitalize;
     display: none;
 }
-.sociallinks {
-    background: none;
+@media screen and (max-width: 768px) {
+    section.aboutme {
+        grid-template-columns: 1fr !important;
+    }
+    section.aboutme > div > h1 {
+        text-align: center;
+    }
+    img.ramen {
+        height: 25vh;
+    }
+    h3 {
+        display: block;
+    }
+    object, embed {
+        display: none;
+    }
+    a > h1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
 }
-section.sociallinks {
-    margin: 2em 12em;
+@media (max-width: 660px) {
+    img.ramen {
+        height: 15vh;
+    }
 }

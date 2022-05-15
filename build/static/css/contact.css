@@ -1,5 +1,11 @@
 /* Contact Page */
 @import url("style.css");
+ul.uk-navbar-nav>li.contact,
+li.contact>a {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border-radius: 100% 100% 0 0;
+}
 
 Body {
     background-image: repeating-linear-gradient(-45deg,
@@ -19,11 +25,11 @@ h1 {
 }
 section.contact {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 80%;
+    grid-template-columns: 2fr 1fr;
+    width: 90%;
     height: 80%;
-    margin: auto;
-    margin-bottom: 3em;
+    margin: 1em 0 1em 0;
+    margin-inline: auto;
     border-radius: 20px;
     border: 3px solid var(--lighter-color);
     background: var(--glass-color);
@@ -31,70 +37,76 @@ section.contact {
     backdrop-filter: saturate(180%) blur(10px);
 }
 
-section.contact>div {
+section.contact > div {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: -2em;
 }
-
-div.left>form {
-    width: 90%;
-    margin: auto;
-    margin-top: 3em;
-    justify-content: center;
-    align-items: center;
+/* div.left */
+div.left > form {
+    margin-left: 1em;
+    width: 100%;
 }
-
-div.left>form > div {
+div.left > form div {
     margin-top: 2em;
 }
-div.left>form > div * {
+div.left > form div * {
     border-radius: 3em;
     text-align: center;
     border: 1px solid var(--primary-color);
 }
 
-div.left>form>div.center {
+div.left div.button {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
-section.contact>div.right {
-    display: grid;
-    grid-template-rows: 1fr 2fr;
-}
-
-div.right>img {
-    max-height: 28em;
-    left: 0;
-    top: 0;
-}
-
-div > textarea {
+div.left  textarea {
     resize: vertical;
     height: 200px;
 }
 
-@media screen and (max-width: 980px) {
+/* div.right */
+section.contact > div.right {
+    display: grid;
+    grid-template-rows: 1fr 2fr;
+}
+
+div.right > img.communicationimage {
+    max-height: 28em;
+}
+
+
+
+@media screen and (max-width: 768px) {
     section.contact {
         grid-template-columns: 1fr;
     }
     section.sociallinks {
         margin-top: 2em;
+        margin-bottom: 1em;
     }
     form textarea {
         height: 120px;
     }
+    div.left > form {
+        margin-right: 1em;
+    }
+    div.left > form div {
+        margin-top: 1em;
+    }
+    div.right {
+        grid-template-rows: 1fr !important;
+    }
     div.right > img {
-        position: absolute;
         top: 0;
+        left: 0;
+        position: absolute;
         height: 100%;
         width: 100%;
         object-fit: cover;
         z-index: -1;
-        filter: blur(3px);
+        filter: blur(5px) saturate(150%);
     }
 }
 

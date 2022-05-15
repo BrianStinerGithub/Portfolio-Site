@@ -17,12 +17,12 @@
 </head>
 <body>
     <!-- navbar -->
-    <nav class="uk-navbar-container uk-margin uk-navbar-transparent" uk-navbar>
+    <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
         <div class="uk-navbar-center">
             <ul class="uk-navbar-nav">
-                <li><a href="/">Portfolio</a></li>
-                <li><a href="/about/">About</a></li>
-                <li><a href="/contact/">Contact</a></li>
+                <li class="portfolio"><a href="/">Portfolio</a></li>
+                <li class="about"><a href="/about/">About</a></li>
+                <li class="contact"><a href="/contact/">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -31,14 +31,14 @@
 <link rel="stylesheet" href="../static/css/about.css">
 <section class="aboutme">
     <div>
-        <img src="../static/png/ramen.png" alt="ramen">
+        <img class="ramen" src="../static/png/ramen.png" alt="ramen">
     </div>
     <div>
         <h1 class="anim">About Me</h1>
         <p class="anim">
             I am a software engineer with a passion for creating beautiful,
             intuitive, and user-friendly applications. I am a self-taught 
-            programming with a facination
+            programmer with a facination
             for machine learning and cryptocurrencies.
         </p>
         <p class="anim">
@@ -59,30 +59,34 @@
                 alt="Github" /></a>
     </div>
 </section>
-<h3 class="sociallinks">click the titles to go to the file</h3>
+<h3 class="sociallinks">click the titles below to get my documents</h3>
 <section>
     <div class="left" >
-        <a href="static\pdf\revatureportfolio.pdf"><h1>Portfolio</h1></a>
-        <object data="static\pdf\revatureportfolio.pdf" type="application/pdf">
-            <embed src="static\pdf\revatureportfolio.pdf" type="application/pdf">
+        <a href="/static/pdf/revatureportfolio.pdf">
+            <h1>Portfolio</h1>
+        </a>
+        <object data="/static/pdf/revatureportfolio.pdf" type="application/pdf">
+            <embed src="/static/pdf/revatureportfolio.pdf" type="application/pdf">
         </object>
     </div>
     
-    <div class="right" href="static\pdf\resume.pdf">
-        <a href="static\pdf\resume.pdf"><h1>Resume</h1></a>
-        <object data="static\pdf\resume.pdf" type="application/pdf">
-            <embed src="static\pdf\resume.pdf" type="application/pdf">
+    <div class="right">
+        <a href="/static/pdf/resume.pdf">
+            <h1>Resume</h1>
+        </a>
+        <object data="/static/pdf/resume.pdf" type="application/pdf">
+            <embed src="/static/pdf/resume.pdf" type="application/pdf">
         </object>
     </div>
 </section>
 
 <script>
-    gsap.timeline({defaults: {duration: .7}})
-    .from(".aboutme", {opacity: 0, x: -200})
-    .from(".anim", {opacity: 0, y: -100, stagger: 0.8})
-    .from(".sociallinks", {opacity: 0, y: -100})
-    .from(".left", {opacity: 0, x: -100})
-    .from(".right", {opacity: 0, x: 100}, "<")
+    gsap.timeline({defaults: {duration: .7, opacity: 0}})
+    .from(".aboutme",       { x: -200 })
+    .from(".anim",          { y: -100, stagger: 0.8 }, "<")
+    .from(".sociallinks",   { y: -100 })
+    .from(".left",          { x: -100 })
+    .from(".right",         { x: 100 }, "<")
 
 </script>
 
