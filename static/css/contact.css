@@ -72,28 +72,6 @@ div.right>img {
     top: 0;
 }
 
-section.sociallinks {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    margin: 6em;
-    margin-bottom: 0;
-
-}
-
-section.sociallinks>div {
-    border-radius: 10px;
-    width: 100px;
-    height: 100px;
-    transition: 0.2s;
-    display: block;
-    margin: auto;
-}
-
-section.sociallinks>div:hover {
-    filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.308));
-    transform: rotate(-5deg);
-}
-
 div > textarea {
     resize: vertical;
     height: 200px;

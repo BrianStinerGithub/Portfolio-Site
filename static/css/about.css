@@ -24,11 +24,30 @@ section {
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
+section.aboutme {
+    margin: 0 2em;
+    background: none;
+}
 a > h1 {
     width: min-content;
     margin: auto;
-    text-decoration: none;
+    text-decoration: underline;
     color: var(--black-color);
     margin-bottom: .5em;
     margin-top: .5em;
+}
+
+h3 {
+    margin: auto;
+    margin-top: .5em;
+    margin-bottom: .5em;
+    text-align: center;
+    text-transform: capitalize;
+    display: none;
+}
+.sociallinks {
+    background: none;
+}
+section.sociallinks {
+    margin: 2em 12em;
 }

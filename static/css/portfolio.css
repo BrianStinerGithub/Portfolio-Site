@@ -34,6 +34,7 @@ ul.uk-slideshow-items>li {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1em;
+    border
 }
 
 img.left {
@@ -47,12 +48,13 @@ div.right {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
     height: 100%;
     width: 100%;
 }
 
 div.links {
-    margin-top: -10em;
+    margin-top: -2em;
 }
 
 div.blocktext {

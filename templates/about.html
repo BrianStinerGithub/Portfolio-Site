@@ -2,6 +2,37 @@
 {% block title %}About{% endblock %}
 {% block content %}
 <link rel="stylesheet" href="../static/css/about.css">
+<section class="aboutme">
+    <div>
+        <img src="../static/png/ramen.png" alt="ramen">
+    </div>
+    <div>
+        <h1 class="anim">About Me</h1>
+        <p class="anim">
+            I am a software engineer with a passion for creating beautiful,
+            intuitive, and user-friendly applications. I am a self-taught 
+            programming with a facination
+            for machine learning and cryptocurrencies.
+        </p>
+        <p class="anim">
+            I am a graduate of the Revature's .Net Full-Stack
+            Development Bootcamp. I use Python, JavaScript, and C# to build
+            applications. 
+            I also make incredible ramen bowls! 😊
+        </p>
+    </div>
+</section>
+<section class="sociallinks">
+    <div><a href="https://www.linkedin.com/in/mathmagicmachine/">
+            <img class="leftimage" src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Linkedin_icon.svg" 
+                alt="LinkedIn"></a>
+    </div>
+    <div ><a href="https://www.github.com/BrianStinerGithub/">
+            <img class="rightimage" src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" 
+                alt="Github" /></a>
+    </div>
+</section>
+<h3 class="sociallinks">click the titles to go to the file</h3>
 <section>
     <div class="left" >
         <a href="static\pdf\revatureportfolio.pdf"><h1>Portfolio</h1></a>
@@ -18,5 +49,13 @@
     </div>
 </section>
 
+<script>
+    gsap.timeline({defaults: {duration: .7}})
+    .from(".aboutme", {opacity: 0, x: -200})
+    .from(".anim", {opacity: 0, y: -100, stagger: 0.8})
+    .from(".sociallinks", {opacity: 0, y: -100})
+    .from(".left", {opacity: 0, x: -100})
+    .from(".right", {opacity: 0, x: 100}, "<")
 
+</script>
 {% endblock %}
