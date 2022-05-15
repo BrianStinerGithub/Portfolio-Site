@@ -12,7 +12,7 @@
         <div class="left">
             
             <form class="uk-form-stacked" action="https://formsubmit.co/cee6c0a1a43c1d71f04af8472400587c" method="POST">
-                <h1>Send me an Email!</h1>
+                <div><h1>Send me an Email!</h1></div>
                 <div class="uk-form-controls">
                     <input class="uk-input" id="form-stacked-text" type="text" name="name" placeholder="Your name" required>
                 </div>
@@ -31,31 +31,40 @@
             </form>
         </div>
         <div class="right">
-            
             <section class="sociallinks">
-                <div>
-                    <a href="https://www.linkedin.com/in/mathmagicmachine/">
-                        <img src="{{ linkedin_icon }}" 
-                            alt="LinkedIn">
-                    </a>
+                <div ><a href="https://www.linkedin.com/in/mathmagicmachine/">
+                        <img class="leftimage" src="{{ linkedin_icon }}" 
+                            alt="LinkedIn"></a>
                 </div>
-                <!-- <div>
-                    <a href="mailto:BrianStinerProfessional@gmail.com">
-                        <img src="{{ email_icon }}" 
-                            alt="Email"
-                            style="width: 100%" />
-                    </a>
-                </div> -->
-                <div>
-                    <a href="https://www.github.com/BrianStinerGithub/">
-                        <img src="{{ github_icon }}" 
-                            alt="Github" />
-                    </a>
+                <div ><a href="https://www.github.com/BrianStinerGithub/">
+                        <img class="rightimage" src="{{ github_icon }}" 
+                            alt="Github" /></a>
                 </div>
-                
             </section>
-            <img src="{{ communication_image }}" alt="communication image">
-
+            <img class="rightimage" 
+                src="{{ communication_image }}" 
+                alt="communication image">
         </div>
     </section>
+    <script>
+        gsap.from(".leftimage", {
+            x: -200,
+            opacity: 0,
+            rotation: -180,
+            duration: 1.2,
+        }),
+        gsap.from(".rightimage", {
+
+            x: 200,
+            opacity: 0,
+            rotation: 180,
+            duration: 1.2,
+        }),
+        gsap.from(".left", {
+            opacity: 0,
+            duration: 1.2,
+            x: -100,
+            ease: "power2.out"
+        });
+    </script>
 {% endblock %}
