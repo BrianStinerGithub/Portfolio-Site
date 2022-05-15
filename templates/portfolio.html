@@ -49,7 +49,7 @@
 <div class="spacer wave"></div>
 <div class="white blocktext">
     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum unde repudiandae itaque suscipit veniam, explicabo blanditiis quibusdam. Consequuntur eligendi illum iusto totam distinctio temporibus, hic laudantium in, praesentium deleniti laborum!</p>
-    <label for="cal">
+    <label>
         Pick a date &amp; time:
         <input type="datetime-local" id="cal" />
     </label>
@@ -67,19 +67,13 @@
 
 
 <script>
-    gsap.registerPlugin(ScrollTrigger);
-
-    gsap.timeline({default: {opacity: 0, duration: 1, ease: "power2.inOut"}})
-        .from(".main", { })
-        .from(".spacer", { })
-        .from(".blocktext", { })
 
     window.addEventListener('load', () => {
         const now = new Date();
         now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
         now.setSeconds(0); 
         now.setMilliseconds(0);
-        document.getElementById('cal').value = now.toISOString().slice(0, -1);
+        document.getElementById("cal").value = now.toISOString().slice(0, -1);
     });
 
 </script>
