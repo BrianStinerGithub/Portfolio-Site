@@ -1,0 +1,100 @@
+/* Contact Page */
+@import url("style.css");
+
+Body {
+    background-image: repeating-linear-gradient(-45deg,
+            var(--lighter-color), var(--lighter-color) 10px,
+            var(--white-color) 100px, var(--white-color) 200px);
+    background-attachment: fixed;
+    background-image: url("../svg/contactbackground.svg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+h1 {
+    padding: .2em;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    text-decoration: none;
+}
+section.contact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 80%;
+    height: 80%;
+    margin: auto;
+    margin-bottom: 3em;
+    border-radius: 20px;
+    border: 3px solid var(--lighter-color);
+    background: var(--glass-color);
+    -webkit-backdrop-filter: saturate(180%) blur(10px);
+    backdrop-filter: saturate(180%) blur(10px);
+}
+
+section.contact>div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -2em;
+}
+
+div.left>form {
+    width: 90%;
+    margin: auto;
+    margin-top: 3em;
+    justify-content: center;
+    align-items: center;
+}
+
+div.left>form > div {
+    margin-top: 2em;
+}
+div.left>form > div * {
+    border-radius: 3em;
+    text-align: center;
+    border: 1px solid var(--primary-color);
+}
+
+div.left>form>div.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+section.contact>div.right {
+    display: grid;
+    grid-template-rows: 1fr 2fr;
+}
+
+div.right>img {
+    max-height: 28em;
+    left: 0;
+    top: 0;
+}
+
+div > textarea {
+    resize: vertical;
+    height: 200px;
+}
+
+@media screen and (max-width: 980px) {
+    section.contact {
+        grid-template-columns: 1fr;
+    }
+    section.sociallinks {
+        margin-top: 2em;
+    }
+    form textarea {
+        height: 120px;
+    }
+    div.right > img {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        z-index: -1;
+        filter: blur(3px);
+    }
+}
+

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <!--- Load css. -->
+    <link type="text/css" rel="stylesheet" href="/static/css/style.css" />
+    <!--- Load google marterial icons. -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" crossorigin>
+    <!--- Load javascript code -->
+    <script src="/static/js/script.js" crossorigin></script>
+    <script src="/static/js/uikit.js" crossorigin></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/gsap-latest-beta.min.js"></script>
+    
+</head>
+<body>
+    <!-- navbar -->
+    <nav class="uk-navbar-container uk-margin uk-navbar-transparent" uk-navbar>
+        <div class="uk-navbar-center">
+            <ul class="uk-navbar-nav">
+                <li><a href="/">Portfolio</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- content -->
+    
+<link rel="stylesheet" href="../static/css/about.css">
+<section class="aboutme">
+    <div>
+        <img src="../static/png/ramen.png" alt="ramen">
+    </div>
+    <div>
+        <h1 class="anim">About Me</h1>
+        <p class="anim">
+            I am a software engineer with a passion for creating beautiful,
+            intuitive, and user-friendly applications. I am a self-taught 
+            programming with a facination
+            for machine learning and cryptocurrencies.
+        </p>
+        <p class="anim">
+            I am a graduate of the Revature's .Net Full-Stack
+            Development Bootcamp. I use Python, JavaScript, and C# to build
+            applications. 
+            I also make incredible ramen bowls! 😊
+        </p>
+    </div>
+</section>
+<section class="sociallinks">
+    <div><a href="https://www.linkedin.com/in/mathmagicmachine/">
+            <img class="leftimage" src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Linkedin_icon.svg" 
+                alt="LinkedIn"></a>
+    </div>
+    <div ><a href="https://www.github.com/BrianStinerGithub/">
+            <img class="rightimage" src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" 
+                alt="Github" /></a>
+    </div>
+</section>
+<h3 class="sociallinks">click the titles to go to the file</h3>
+<section>
+    <div class="left" >
+        <a href="static\pdf\revatureportfolio.pdf"><h1>Portfolio</h1></a>
+        <object data="static\pdf\revatureportfolio.pdf" type="application/pdf">
+            <embed src="static\pdf\revatureportfolio.pdf" type="application/pdf">
+        </object>
+    </div>
+    
+    <div class="right" href="static\pdf\resume.pdf">
+        <a href="static\pdf\resume.pdf"><h1>Resume</h1></a>
+        <object data="static\pdf\resume.pdf" type="application/pdf">
+            <embed src="static\pdf\resume.pdf" type="application/pdf">
+        </object>
+    </div>
+</section>
+
+<script>
+    gsap.timeline({defaults: {duration: .7}})
+    .from(".aboutme", {opacity: 0, x: -200})
+    .from(".anim", {opacity: 0, y: -100, stagger: 0.8})
+    .from(".sociallinks", {opacity: 0, y: -100})
+    .from(".left", {opacity: 0, x: -100})
+    .from(".right", {opacity: 0, x: 100}, "<")
+
+</script>
+
+
+    <!-- footer -->
+    <footer class="uk-section uk-section-secondary uk-padding-remove-top black">
+    </footer>
+</body>

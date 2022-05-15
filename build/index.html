@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <!--- Load css. -->
+    <link type="text/css" rel="stylesheet" href="../static/css/portfolio.css" />
+    <!--- Load google marterial icons. -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" crossorigin>
+    <!--- Load javascript code -->
+    <script src="/static/js/script.js" crossorigin></script>
+    <script src="/static/js/uikit.js" crossorigin></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/gsap-latest-beta.min.js"></script>
+    
+</head>
+<body>
+    <!-- navbar -->
+    <nav class="uk-navbar-container uk-margin uk-navbar-transparent" uk-navbar>
+        <div class="uk-navbar-center">
+            <ul class="uk-navbar-nav">
+                <li><a href="/">Portfolio</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- content -->
+    
+
+
+    <section class="main">
+        <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow>
+
+            <ul class="uk-slideshow-items">
+                
+                <li>
+                    
+                        <img class="left" src="https://s3.amazonaws.com/utep-uploads/wp-content/uploads/DUQ-MIG/2018/09/19122843/nurse-using-a-tablet.jpg" alt="CloudCure">
+                    
+                    <div class="right">
+                        <div class="links">
+                            
+                                <a href="https://github.com/CloudCure/CloudCure" target="_blank">
+                                <img src="https://img.icons8.com/color/github.png" alt="Github" />
+                                </a>
+                            
+                            
+                        </div>
+                        <h1 class="uk-slideshow-title">CloudCure</h1>
+                        <p class="uk-slideshow-description">Cloud Cure is a Web App which will allow a user to register as a nurse or a doctor, and provide patients with a medical diagnosis.         At Cloud Cure nurses will be able to login and fill out patient diagnosis forms. Doctors will be able to login and finalize patient diagnosis forms.         Afterwards a nurse/doctor will be able to print out the patient diagnosis form in order to provide continuous support for the patient.</p>
+                    </div>
+                </li>
+                
+                <li>
+                    
+                        <img class="left" src="http://unsplash.it/800/800?gravity=center" alt="MyTube">
+                    
+                    <div class="right">
+                        <div class="links">
+                            
+                                <a href="https://github.com/BrianStinerGithub/MyTube" target="_blank">
+                                <img src="https://img.icons8.com/color/github.png" alt="Github" />
+                                </a>
+                            
+                            
+                        </div>
+                        <h1 class="uk-slideshow-title">MyTube</h1>
+                        <p class="uk-slideshow-description">MyTube is a copy of YouTube, made with Django and CSS. It is a video sharing website. It allows users to upload videos, and search for videos by title,         description, or tags. Users can also like, dislike, and comment on videos. Users can also follow other users and see their videos.</p>
+                    </div>
+                </li>
+                
+                <li>
+                    
+                        <img class="left" src="http://unsplash.it/800/800?gravity=center" alt="TikTok Compilation Channel Bot">
+                    
+                    <div class="right">
+                        <div class="links">
+                            
+                                <a href="https://github.com/BrianStinerGithub/automated_youtube_channel" target="_blank">
+                                <img src="https://img.icons8.com/color/github.png" alt="Github" />
+                                </a>
+                            
+                            
+                        </div>
+                        <h1 class="uk-slideshow-title">TikTok Compilation Channel Bot</h1>
+                        <p class="uk-slideshow-description">TikTok Compilation ChannelBot is a Python script that scrapes TikTok videos based on a keyword and compiles them into a video.         The videos are then uploaded to a YouTube channel and a thumbnail is generated for each video. The script can be run as often as you want.</p>
+                    </div>
+                </li>
+                
+            </ul>
+
+            <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous
+                uk-slideshow-item="previous"></a>
+            <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next
+                uk-slideshow-item="next"></a>
+
+        </div>
+
+    </section>
+    <div class="spacer wave"></div>
+    <div class="white blocktext">
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum unde repudiandae itaque suscipit veniam, explicabo blanditiis quibusdam. Consequuntur eligendi illum iusto totam distinctio temporibus, hic laudantium in, praesentium deleniti laborum!</p>
+    </div>
+    <div class="spacer stacked-waves"></div>
+    <div class="primary blocktext">
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum unde repudiandae itaque suscipit veniam, explicabo blanditiis quibusdam. Consequuntur eligendi illum iusto totam distinctio temporibus, hic laudantium in, praesentium deleniti laborum!</p>
+    </div>
+    <div class="spacer wave2"></div>
+    <div class="light blocktext">
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum unde repudiandae itaque suscipit veniam, explicabo blanditiis quibusdam. Consequuntur eligendi illum iusto totam distinctio temporibus, hic laudantium in, praesentium deleniti laborum!</p>
+    </div>
+    <div class="spacer stacked-waves2"></div>
+    <script>
+        gsap.from(".spacer", {
+            duration: 1,
+            y: -100,
+            opacity: 0,
+            ease: "power3.out"
+        });
+        gsap.from(".main", {
+            duration: 1,
+            y: -100,
+            opacity: 0,
+            ease: "power3.out"
+        });
+        gsap.from(".blocktext", {
+            duration: 1,
+            y: -100,
+            opacity: 0,
+            ease: "power3.out"
+        });
+    </script>
+
+
+    <!-- footer -->
+    <footer class="uk-section uk-section-secondary uk-padding-remove-top black">
+    </footer>
+</body>

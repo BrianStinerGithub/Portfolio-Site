@@ -1,0 +1,94 @@
+@import url("style.css");
+
+h1.uk-slideshow-title {
+    color: var(--light-color);
+    text-decoration: underline;
+    justify-content: center;
+    display: flex;
+    text-transform: capitalize;
+    font-size: 3em;
+    font-weight: bold;
+}
+
+section.main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: var(--dark-color);
+    cursor: move;
+    cursor: grab;
+}
+section.main:active {
+    cursor: grabbing;
+}
+section.main * {
+    user-select: none;
+}
+
+section.main>div {
+    width: 85%;
+    aspect-ratio: 16/9;
+}
+
+ul.uk-slideshow-items>li {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    border
+}
+
+img.left {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+div.right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+}
+
+div.links {
+    margin-top: -2em;
+}
+
+div.blocktext {
+    width: 100%;
+    min-height: 30em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+div.blocktext * {
+    width: 60%;
+    margin: auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.5em;
+}
+.spacer {
+    aspect-ratio: 900/250;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: block;
+    margin-top: -1px;
+    margin-bottom: -1px;
+}
+div.wave {
+    background-image: url("../svg/wave.svg");
+}
+div.stacked-waves {
+    background-image: url("../svg/stacked-waves.svg");
+}
+div.wave2 {
+    background-image: url("../svg/wave2.svg");
+}
+div.stacked-waves2 {
+    background-image: url("../svg/stacked-waves2.svg");
+}
