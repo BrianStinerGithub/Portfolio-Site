@@ -12,7 +12,7 @@ projects = [
         At Cloud Cure nurses will be able to login and fill out patient diagnosis forms. Doctors will be able to login and finalize patient diagnosis forms. \
         Afterwards a nurse/doctor will be able to print out the patient diagnosis form in order to provide continuous support for the patient.',
         'https://github.com/CloudCure/CloudCure',
-        '',
+        'https://example.com',
         'https://s3.amazonaws.com/utep-uploads/wp-content/uploads/DUQ-MIG/2018/09/19122843/nurse-using-a-tablet.jpg'),
         
         project('MyTube',

@@ -24,10 +24,9 @@
                     <textarea class="uk-textarea" id="form-stacked-text" name="message" placeholder="Your message" required></textarea>
                 </div>
 
-                <div class="center">
+                <div class="button">
                     <button class="uk-button uk-button-primary" type="submit">Send</button>
                 </div>
-                <br>
 
             </form>
         </div>
@@ -42,30 +41,16 @@
                             alt="Github" /></a>
                 </div>
             </section>
-            <img class="rightimage" 
+            <img class="communicationimage" 
                 src="{{ communication_image }}" 
                 alt="communication image">
         </div>
     </section>
     <script>
-        gsap.from(".leftimage", {
-            x: -200,
-            opacity: 0,
-            rotation: -180,
-            duration: 1.2,
-        }),
-        gsap.from(".rightimage", {
-
-            x: 200,
-            opacity: 0,
-            rotation: 180,
-            duration: 1.2,
-        }),
-        gsap.from(".left", {
-            opacity: 0,
-            duration: 1.2,
-            x: -100,
-            ease: "power2.out"
-        });
+        gsap.timeline({defaults: {duration: 1, opacity: 0, ease: "power2.out"}})
+        .from(".communicationimage", { })
+        .from(".leftimage",     { x: -150, rotation: -180 })
+        .from(".rightimage",    { x: 150, rotation: 180 }, "<")
+        .from(".left",          { x: -100 });
     </script>
 {% endblock %}

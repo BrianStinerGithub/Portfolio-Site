@@ -4,76 +4,85 @@
 {% block content %}
 {% set github_icon = "https://img.icons8.com/color/github.png" %}
 {% set live_icon = "https://img.icons8.com/color/cloud.png" %}
-    <section class="main">
-        <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow>
+<section class="main">
+    <div class="uk-visible-toggle" tabindex="-1" uk-slideshow>
+        <ul class="uk-slideshow-items">
 
-            <ul class="uk-slideshow-items">
-                {% for project in portfolio %}
-                <li>
-                    {% if project.image != "" %}
-                        <img class="left" src="{{ project.image }}" alt="{{ project.title }}">
-                    {% else %}
-                        <img class="left" src="http://unsplash.it/800/800?gravity=center" alt="{{ project.title }}">
-                    {% endif %}
-                    <div class="right">
-                        <div class="links">
-                            {% if project.github_link != "" %}
-                                <a href="{{ project.codelink }}" target="_blank">
-                                <img src="{{ github_icon }}" alt="Github" />
-                                </a>
-                            {% endif %}
-                            {% if project.livelink != "" %}
-                                <a href="{{ project.livelink }}" target="_blank">
-                                <img src="{{ live_icon }}" alt="Live" />
-                                </a>
-                            {% endif %}
-                        </div>
-                        <h1 class="uk-slideshow-title">{{ project.title }}</h1>
-                        <p class="uk-slideshow-description">{{ project.description }}</p>
+            {% for project in portfolio %}
+            <li>
+
+                {% if project.image != "" %}
+                <img class="left" src="{{ project.image }}" alt="{{ project.title }}">
+                {% else %}
+                <img class="left" src="http://unsplash.it/800/800?gravity=center" alt="{{ project.title }}">
+                {% endif %}
+
+                <div class="right">
+                    <div class="links">
+                        {% if project.github_link != "" %}
+                        <a href="{{ project.codelink }}" target="_blank">
+                        <img src="{{ github_icon }}" alt="Github" />
+                        </a>
+                        {% endif %}
+                        {% if project.livelink != "" %}
+                        <a href="{{ project.livelink }}" target="_blank">
+                        <img src="{{ live_icon }}" alt="Live" />
+                        </a>
+                        {% endif %}
                     </div>
-                </li>
-                {% endfor %}
-            </ul>
+                    <h1 class="uk-slideshow-title">{{ project.title }}</h1>
+                    <p class="uk-slideshow-description">{{ project.description }}</p>
+                </div>
 
-            <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous
-                uk-slideshow-item="previous"></a>
-            <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next
-                uk-slideshow-item="next"></a>
+            </li>
+            {% endfor %}
 
-        </div>
+        </ul>
 
-    </section>
-    <div class="spacer wave"></div>
-    <div class="white blocktext">
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum unde repudiandae itaque suscipit veniam, explicabo blanditiis quibusdam. Consequuntur eligendi illum iusto totam distinctio temporibus, hic laudantium in, praesentium deleniti laborum!</p>
+        <a class="uk-position-center-left uk-hidden-hover" href="#" uk-slidenav-previous
+            uk-slideshow-item="previous"></a>
+        <a class="uk-position-center-right uk-hidden-hover" href="#" uk-slidenav-next
+            uk-slideshow-item="next"></a>
+
     </div>
-    <div class="spacer stacked-waves"></div>
-    <div class="primary blocktext">
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum unde repudiandae itaque suscipit veniam, explicabo blanditiis quibusdam. Consequuntur eligendi illum iusto totam distinctio temporibus, hic laudantium in, praesentium deleniti laborum!</p>
-    </div>
-    <div class="spacer wave2"></div>
-    <div class="light blocktext">
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum unde repudiandae itaque suscipit veniam, explicabo blanditiis quibusdam. Consequuntur eligendi illum iusto totam distinctio temporibus, hic laudantium in, praesentium deleniti laborum!</p>
-    </div>
-    <div class="spacer stacked-waves2"></div>
-    <script>
-        gsap.from(".spacer", {
-            duration: 1,
-            y: -100,
-            opacity: 0,
-            ease: "power3.out"
-        });
-        gsap.from(".main", {
-            duration: 1,
-            y: -100,
-            opacity: 0,
-            ease: "power3.out"
-        });
-        gsap.from(".blocktext", {
-            duration: 1,
-            y: -100,
-            opacity: 0,
-            ease: "power3.out"
-        });
-    </script>
+</section>
+<div class="spacer wave"></div>
+<div class="white blocktext">
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum unde repudiandae itaque suscipit veniam, explicabo blanditiis quibusdam. Consequuntur eligendi illum iusto totam distinctio temporibus, hic laudantium in, praesentium deleniti laborum!</p>
+    <label for="cal">
+        Pick a date &amp; time:
+        <input type="datetime-local" id="cal" />
+    </label>
+</div>
+<div class="spacer stacked-waves"></div>
+<div class="primary blocktext">
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum unde repudiandae itaque suscipit veniam, explicabo blanditiis quibusdam. Consequuntur eligendi illum iusto totam distinctio temporibus, hic laudantium in, praesentium deleniti laborum!</p>
+</div>
+<div class="spacer wave2"></div>
+<div class="light blocktext">
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum unde repudiandae itaque suscipit veniam, explicabo blanditiis quibusdam. Consequuntur eligendi illum iusto totam distinctio temporibus, hic laudantium in, praesentium deleniti laborum!</p>
+</div>
+<div class="spacer stacked-waves2"></div>
+
+
+
+<script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.timeline({default: {opacity: 0, duration: 1, ease: "power2.inOut"}})
+        .from(".main", { })
+        .from(".spacer", { })
+        .from(".blocktext", { })
+
+    window.addEventListener('load', () => {
+        const now = new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+        now.setSeconds(0); 
+        now.setMilliseconds(0);
+        document.getElementById('cal').value = now.toISOString().slice(0, -1);
+    });
+
+</script>
+
+
 {% endblock %}

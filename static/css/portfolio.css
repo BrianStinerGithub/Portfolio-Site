@@ -1,17 +1,21 @@
 @import url("style.css");
-
-h1.uk-slideshow-title {
-    color: var(--light-color);
-    text-decoration: underline;
-    justify-content: center;
-    display: flex;
-    text-transform: capitalize;
-    font-size: 3em;
-    font-weight: bold;
+ul.uk-navbar-nav > li.portfolio, 
+li.portfolio > a {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border-radius: 100% 100% 0 0;
 }
-
+/* 
+section.main > 
+div.uk-slideshow > 
+ul.uk-slideshow-items > 
+li > 
+img.left, div.right > 
+div.links, h1, p,  
+*/
 section.main {
     width: 100%;
+    min-height: 80vh;
     display: flex;
     justify-content: center;
     background-color: var(--dark-color);
@@ -21,53 +25,71 @@ section.main {
 section.main:active {
     cursor: grabbing;
 }
-section.main * {
+section.main :is(div, ul, li) {
     user-select: none;
+    width: 100%;
+    height: 100%;
 }
-
-section.main>div {
-    width: 85%;
-    aspect-ratio: 16/9;
+div.uk-slideshow {
+    height: 80vh !important;
 }
-
-ul.uk-slideshow-items>li {
+div.uk-slideshow > a {
+    transform: scale(2);
+    color: var(--white-color) !important;
+}
+/* project cards */
+ul.uk-slideshow-items > li {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1em;
-    border
 }
-
 img.left {
     height: 100%;
     width: 100%;
     object-fit: cover;
 }
-
+/* project title, description, and links */
 div.right {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+div.right > p {
+    padding-inline: 2em;
+    color: var(--white-color);
+}
+div.right > h1 {
+    color: var(--light-color);
+    text-decoration: underline;
+    text-transform: capitalize;
+    font-size: 3em;
+    font-weight: bold;
     text-align: center;
-    height: 100%;
-    width: 100%;
+}
+div.right > div.links {
+    position: absolute;
+    height: fit-content;
+    width: fit-content;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-div.links {
-    margin-top: -2em;
-}
+
+
 
 div.blocktext {
     width: 100%;
-    min-height: 30em;
+    min-height: 60vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
 }
 div.blocktext * {
-    width: 60%;
-    margin: auto;
+    text-align: center;
+    margin: 1em 2em;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 1.5em;
 }
@@ -91,4 +113,41 @@ div.wave2 {
 }
 div.stacked-waves2 {
     background-image: url("../svg/stacked-waves2.svg");
+}
+
+/* 
+section.main > 
+div.uk-slideshow > 
+ul.uk-slideshow-items > 
+li > 
+img.left, div.right > 
+div.links, h1, p,  
+*/
+@media (min-width: 1000px) {
+    section.main, div.uk-slideshow, ul.uk-slideshow-items, ul > li {
+        width: auto;
+        min-height: none !important;
+        max-height: 80vh !important;
+    }
+
+
+    
+}
+@media screen and (max-width: 768px) {
+    ul.uk-slideshow-items, ul > li {
+        grid-template-rows: 1fr 2fr !important;
+        grid-template-columns: 1fr !important;
+    }
+    img.left {
+        max-height: 40vh;
+    }
+}
+
+@media (max-width: 500px) {
+    img.left {
+        max-height: 25vh;
+    }
+    section.main p {
+        margin: 0;
+    }
 }
