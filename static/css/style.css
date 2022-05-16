@@ -10,7 +10,6 @@
     --glass-color: rgba(250, 250, 250, 0.25);
     accent-color: var(--primary-color);
     color-scheme: var(--light-color) var(--dark-color) var(--black-color);
-
     overflow-x: hidden;
 }
 .primary {
