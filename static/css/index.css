@@ -4,15 +4,23 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    cursor: url(../png/hammer-cursor.png), wait;
 }
 
 /* loading effect */
+#loading {
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    cursor: wait;
+    background-color: #3498db;
+}
 @keyframes spin {
     0% {transform: rotate(0deg);}
     100% {transform: rotate(360deg);}
 }
-
 #loader {
     position: absolute;
     left: 50%;
@@ -28,9 +36,8 @@ body {
     height: 120px;
     -webkit-animation: spin 2s linear infinite;
     animation: spin 2s linear infinite;
-    z-index: 2;
+    z-index: 3;
 }
-
 #loader:before {
     content: "";
     position: absolute;
@@ -45,9 +52,38 @@ body {
     height: 120px;
     -webkit-animation: spin 3s linear infinite;
     animation: spin 3s linear infinite;
-    z-index: 2;
+    z-index: 3;
+}
+/* glass breaking minigame */
+#frosted-glass {
+    content: "";
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300%;
+    overflow: auto;
+    background-color: rgba(214, 214, 214, 0.5);
+    z-index: 1;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    box-shadow: inset 0 0 10px #000;
+    cursor: url(../png/hammer-cursor.png), crosshair;
+}
+#frosted-glass:active {
+    cursor: url(../png/hammer-click.png), crosshair;
+}
+#havefun {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    text-shadow: 10px 10px 10px #000;
 }
 
+/* main content of index */
 #page {
     display: none;
     opacity: 0;
@@ -59,21 +95,10 @@ body {
     justify-content: center;
     flex: auto;
     width: 100%;
-    cursor: url(../png/hammer-cursor.png), crosshair;
-
-}
-
-#loading {
-    position: absolute;
-    display: block;
-    top: 50%;
-    left: 50%;
-    translate: -50%, -50%;
 }
 div.spacer {
     min-height: 50vh;
 }
-/* h1, p, styling */
 h1 {
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
@@ -99,28 +124,3 @@ a {
     align-items: center;
 }
 
-/* div classes */
-
-#frosted-glass {
-    content: "";
-    position: absolute;
-    display: block;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(214, 214, 214, 0.5);
-    z-index: 1;
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    box-shadow: inset 0 0 10px #000;
-    cursor: url(../png/hammer-cursor.png), grab;
-}
-#havefun {
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #fff;
-    text-shadow: 10px 10px 10px #000;
-}

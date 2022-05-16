@@ -41,10 +41,13 @@
             setTimeout(b, 2500);
             setTimeout(c, 5000);
 
-            function glassClick() {
-                document.getElementById("frosted-glass").style.cursor = "url(../png/hammer-click.png), auto";
-
-            }
+            document.getElementById("frosted-glass").addEventListener("click", () => {
+                clickpoint = {
+                    x: event.clientX,
+                    y: event.clientY
+                }
+                console.log(clickpoint);
+            });
 
         }
     </script>
@@ -53,7 +56,7 @@
     <div id="loading">
         <div id="loader"></div>
     </div>
-    <div id="frosted-glass" onclick="glassClick()">
+    <div id="frosted-glass">
         <h1 id="havefun">Have fun!</h1>
     </div>
     <div id="page" >
