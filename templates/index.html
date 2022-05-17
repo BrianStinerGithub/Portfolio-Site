@@ -42,11 +42,23 @@
             setTimeout(c, 5000);
 
             document.getElementById("frosted-glass").addEventListener("click", () => {
-                clickpoint = {
-                    x: event.clientX,
-                    y: event.clientY
-                }
-                console.log(clickpoint);
+                // save screen object
+                const screen = document.getElementById("frosted-glass");
+                // get click x and y
+                const clickX = event.clientX;
+                const clickY = event.clientY;
+                console.log(clickX, clickY);
+                // shake screen randomly 10 times quickly from -20 to 20, then return to normal
+                r = () => { return Math.floor(Math.random() * 40) - 20; }
+                var tl = new TimelineMax({
+                    defaults: { duration: 0.04 },
+                    onComplete: () => {
+                        screen.style.transform = "translate(0px, 0px)";
+                    }
+                }).to(screen, { x: r(), y: r() }).to(screen, { x: r(), y: r() }).to(screen, { x: r(), y: r() }).to(screen, { x: r(), y: r() }).to(screen, { x: r(), y: r() }).to(screen, { x: r(), y: r() }).to(screen, { x: r(), y: r() }).to(screen, { x: r(), y: r() }).to(screen, { x: r(), y: r() }).to(screen, { x: r(), y: r() })
+                // play sfx
+
+                // generate glass shatter drawing
             });
 
         }
@@ -83,13 +95,24 @@
 
     <!-- smooth scroll -->
     <script>
-        gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
-
-        let smoother = ScrollSmoother.create();
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.to(".spacer", {
+            scrollTrigger: {
+                trigger: "#page",
+                start: "top bottom",
+                end: "bottom bottom",
+                scrub: true,
+                pin: true,
+                id: "spacer"
+            },
+            y: -100,
+            opacity: 0
+        });
 
     </script>
 
     <!-- now we create the 3-d enviroment effect -->
+    <script src="https://unpkg.com/npm/three-orbitcontrols@2.110.3/OrbitControls.js"></script>
     <script type="module">
         import * as THREE from 'http://unpkg.com/three@0.126.1/build/three.module.js';
         
