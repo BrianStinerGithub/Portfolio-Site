@@ -129,7 +129,7 @@ div.links, h1, p,
         min-height: none !important;
         max-height: 80vh !important;
     }
-
+    
 
     
 }
@@ -141,11 +141,19 @@ div.links, h1, p,
     img.left {
         max-height: 40vh;
     }
+    div.right > div.links {
+        top: 40vh;
+        transform: translate(-50%, -30%);
+    }
 }
 
 @media (max-width: 500px) {
     img.left {
         max-height: 25vh;
+    }
+    div.right > div.links {
+        top: 25vh;
+        transform: translate(-50%, -30%);
     }
     section.main p {
         margin: 0;

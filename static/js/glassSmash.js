@@ -1,6 +1,6 @@
 const canvas = document.getElementById("frosted-glass"),
 	context = canvas.getContext("2d"),
-	newAvailangles = [],
+    newAvailangles = [],
 	radiusList = [
 		// radiusList = [log10(x) for x in range(2, 10)] +
 		//              [log2(x) for x in range(2, 10)] +
@@ -13,6 +13,7 @@ const canvas = document.getElementById("frosted-glass"),
 		24.0, 120.0,
 	],
     sfx = new Audio("../../static/mp3/glassHit.mp3");
+    timesSmashed = 0;
     context.lineWidth = 1;
 	context.strokeStyle = "black";
 console.log("Initializing...");
@@ -20,7 +21,10 @@ console.log("Initializing...");
 for (i = 0; i < 360; i++) {
     newAvailangles.push(i);
 }
-
+shatterGlass = () => {
+    console.log("Shattering glass...");
+    canvas.style.display = "none";
+}
 
 
 // ? This is the star of the show.
@@ -32,7 +36,11 @@ function createSmash(X, Y) {
 	drawStarCracks(X, Y);           // Draw a lot long thin lines from center
     //generateCrackleWeb(X, Y);       // Draw bunch of really tiny shards near the center
     // eraseBlob(X, Y);               // A blob shape made of 3 random circles near the center is fully punched out  
-
+    timesSmashed++;
+    console.log("timesSmashed:", timesSmashed);
+    if(timesSmashed >= 10) {
+        shatterGlass();
+    }
 }
 
 

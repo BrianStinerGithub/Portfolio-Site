@@ -44,9 +44,12 @@
     border-bottom: 1px solid var(--primary-color);
     overflow: hidden;
 }
-ul.uk-navbar-nav>li {
+ul.uk-navbar-nav>li, ul.uk-navbar-nav>li>a {
     width: 100px;
-    min-height: fit-content;
+    min-height: min-content;
+}
+ul.uk-navbar-nav>li>a {
+    height: 8vh;
 }
 
 

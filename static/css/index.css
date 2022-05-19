@@ -4,6 +4,10 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    background-color: #000;
+    background-image: url("../../static/png/pagebackground.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 /* loading effect */
@@ -99,7 +103,12 @@ body {
     width: 100%;
 }
 div.spacer {
-    min-height: 50vh;
+    min-height: 40vh;
+    width: 100%;
+}
+div.material-icons {
+    color:#fff;
+    margin: 3em;
 }
 h1 {
     font-family: 'Roboto', sans-serif;
@@ -117,12 +126,25 @@ p {
     margin: 0 0 20px 0;
     text-align: center;
     color: #fff;
-    min-height: 5em;
+    min-height: 1em;
 }
 a {
     margin: auto;
-    display: flex;
+    display: block;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    text-decoration: none;
+    padding: 2px;
+    height: 30px;
+    width: 90px;
+    color: #fff;
+    border: #3498db solid 2px;
+    border-radius: 15px;
+    background-color: #3498db6e;
+    box-shadow: 0 0 10px #000;
+}
+a:hover {
+    background-color: #3498db;
 }
 
