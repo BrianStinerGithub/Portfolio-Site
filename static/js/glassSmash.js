@@ -21,12 +21,12 @@ for (i = 0; i < 360; i++) {
 }
 
 function createSmash(X, Y) {
-    console.log("Smashing!");
+    console.log("Smashing!", X, Y);
 
 	drawRadialCracks(X, Y);     // Draw radial circular cracks that will match up with the long thin cracks
 	drawStarCracks(X, Y);       // Draw a lot long thin lines from center
     generateCrackleWeb(X, Y);   // Draw bunch of really tiny shards near the center
-    eraseBlob(X, Y);            // A blob shape made of 3 random circles near the center is fully punched out  
+    // eraseBlob(X, Y);            // A blob shape made of 3 random circles near the center is fully punched out  
 
 }
 
@@ -34,15 +34,17 @@ function createSmash(X, Y) {
 // a missing piece proportional to the radius.
 function drawRadialCracks(clickX, clickY) {
     console.log("Drawing radial cracks...");
-	radiusList.forEach((r) => makeArc(clickX, clickY, r));
+	
+    radiusList.forEach((r) => makeArc(clickX, clickY, r));
 }
 
 // Lines from center out to the edge of the circle.
 function drawStarCracks(clickX, clickY) {
     console.log("Drawing star cracks...");
-    centerAvailangles = cloneDeep(newAvailangles);
+    
+    const centerAvailangles = structuredClone(newAvailangles);
     while (centerAvailangles.length > 0) {
-        let angle = pickAngle(centerAvailangles);
+        let angle = pickFrom(centerAvailangles);
         centerAvailangles.splice(centerAvailangles.indexOf(angle - 5), 10);
         makeLine(clickX, clickY, angle, (length = Math.random() * 180 + 180));
     }
@@ -63,30 +65,24 @@ function generateCrackleWeb(clickX, clickY) {
     console.log("Generating crackle web...");
     
     const points = [];
-    points.push({ x: clickX, y: clickY, availangles: newAvailangles });
+    points.push( { x: clickX, y: clickY, availangles: structuredClone(newAvailangles) } );
     for (i = 0; i < 300; i++) {
-        point = pickPoint();
-        if (point.availangles.length > 0) {
-            pickedAngle = pickAngle(point.availangles);
-        } else {
-            i--;
-        } // try again, this point has no available angles
+        point = pickFrom(points);
+        
+        if (point.availangles.length == 0) { i--; continue; } // If no availangles at point, reset and try again.
+        pickedAngle = pickFrom(point.availangles);
         point.availangles.splice(point.availangles.indexOf(angle - 5), 10);
-        makeLine(
-            point.x,
-            point.y,
-            pickedAngle,
-            (Math.random() * 5 + 10)
-        );
-
+        
+        makeLine(point.x, point.y, pickedAngle, 5); // (Math.random() * 5 + 10) ? random length
+        
         // Add new point to points.
         // New points have the opposite angle of the previous point spliced out of their availangles.
         points.push({
-            x: point.x + Math.cos((pickedAngle * Math.PI) / 180) * length,
-            y: point.y + Math.sin((pickedAngle * Math.PI) / 180) * length,
-            availangles: cloneDeep( newAvailangles )
-                        .splice(    newAvailangles.indexOf( pickedAngle +180 ) -5, 10)
-                        .splice(    newAvailangles.indexOf( pickedAngle -180 ) -5, 10),
+            x: point.x + Math.cos( pickedAngle *Math.PI /180 ) *length,
+            y: point.y + Math.sin( pickedAngle *Math.PI /180 ) *length,
+            availangles: structuredClone( newAvailangles )
+                        .splice( newAvailangles.indexOf( pickedAngle +180 ) -5, 10)
+                        .splice( newAvailangles.indexOf( pickedAngle -180 ) -5, 10)
         });
     }
 }
@@ -109,9 +105,9 @@ function eraseBlob(clickX, clickY) {
     }
     
     const minRadius = [];
-    minRadius.push(distance(points[0], points[1]) / 2);
-    minRadius.push(distance(points[1], points[2]) / 2);
-    minRadius.push(distance(points[2], points[0]) / 2);
+    minRadius.push( findDistance( blobPoints[0], blobPoints[1]) /2 );
+    minRadius.push( findDistance( blobPoints[1], blobPoints[2]) /2 );
+    minRadius.push( findDistance( blobPoints[2], blobPoints[0]) /2 );
 
 
     context.beginPath();
@@ -122,43 +118,36 @@ function eraseBlob(clickX, clickY) {
 
 
 function findDistance(point1, point2) {
-    console.log("Finding distance...");
     return Math.sqrt(
         Math.pow(Math.abs(point1.x - point2.x), 2) +
         Math.pow(Math.abs(point1.y - point2.y), 2)
     );
 }
 function findAngle(point1, point2) {
-    console.log("Finding angle...");
     return Math.atan2(
         Math.abs(point1.y - point2.y),
         Math.abs(point1.x - point2.x)
     );
 }
 function makeLine(x, y, angle, length) {
-    console.log("Making line...");
-	context.beginPath();
-	context.moveTo(x, y);
-	context.lineTo(x + length * Math.cos(angle), y + length * Math.sin(angle));
-	context.strokeStyle = "#8ab2d8";
-	context.stroke();
+	
+    context.moveTo(x, y);
+    context.beginPath();
+	context.lineTo( x + (length * Math.cos(angle)), y + (length * Math.sin(angle)) );
+    context.stroke();
+    
 }
 function makeArc(x, y, r) {
-    console.log("Making arc...");
-	angle = Math.random * Math.PI * 2;
-	sides = ((180 - r) * Math.PI) / 180;
+	
+    angle = Math.random * Math.PI * 2;
+    sides = ((180 - r) * Math.PI) / 180;
 	context.beginPath();
 	context.arc(x, y, r, angle - sides, angle + sides, false);
-	context.strokeStyle = "#8ab2d8";
-	context.stroke();
+    context.stroke();
+    
 }
-function pickPoint() {
-    console.log("Picking point...");
-	return points[Math.floor(Math.random() * points.length)];
-}
-function pickAngle(availangles) {
-    console.log("Picking angle...");
-	return availangles[Math.floor(Math.random() * availangles.length)];
+function pickFrom(list) {
+	return list[Math.floor(Math.random() * list.length)];
 }
 
 
@@ -182,7 +171,7 @@ canvas.onmousedown = (e) => {
         .to(canvas, { x: r(), y: r() })
         .to(canvas, { x: r(), y: r() })
         .to(canvas, { x: r(), y: r() });
-        
+    tl.play();
 
 	// get click x and y
 	const clickX = e.clientX;
