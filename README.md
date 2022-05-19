@@ -4,4 +4,4 @@ Built with [flask](https://flask.palletsprojects.com/en/1.1.x/) and  [jinja2](ht
 DevOps simply runs frozen_flask with github actions.
 Following JAMstack principles, the website is hosted with [fleek] on [ICP](https://fleek.co/internet-computer-hosting/)
 
-Link to site: [here](lzmx4-oyaaa-aaaad-qcbha-cai.ic.fleek.co)
+Link to site: [here](https://lzmx4-oyaaa-aaaad-qcbha-cai.ic.fleek.co/)
