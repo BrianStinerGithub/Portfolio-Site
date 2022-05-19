@@ -7,7 +7,6 @@
     <title>Landing</title>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Icons&display=swap">
-    <!-- these styles and function create a loading effect -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
@@ -32,45 +31,28 @@
             }
             b = () => {
                 document.getElementById("loading").style.display = "none";
-                gsap.to("#havefun", { opacity: 0, duration: 3 });
+                gsap.to("#havefun", { opacity: 0, duration: 2 });
             }
             c = () => {
                 document.getElementById("havefun").style.display = "none";
             }
             setTimeout(a, 500);
             setTimeout(b, 2500);
-            setTimeout(c, 5000);
-
-            document.getElementById("frosted-glass").addEventListener("click", () => {
-                // save screen object
-                const screen = document.getElementById("frosted-glass");
-                // get click x and y
-                const clickX = event.clientX;
-                const clickY = event.clientY;
-                console.log(clickX, clickY);
-                // shake screen randomly 10 times quickly from -20 to 20, then return to normal
-                r = () => { return Math.floor(Math.random() * 40) - 20; }
-                var tl = new TimelineMax({
-                    defaults: { duration: 0.04 },
-                    onComplete: () => {
-                        screen.style.transform = "translate(0px, 0px)";
-                    }
-                }).to(screen, { x: r(), y: r() }).to(screen, { x: r(), y: r() }).to(screen, { x: r(), y: r() }).to(screen, { x: r(), y: r() }).to(screen, { x: r(), y: r() }).to(screen, { x: r(), y: r() }).to(screen, { x: r(), y: r() }).to(screen, { x: r(), y: r() }).to(screen, { x: r(), y: r() }).to(screen, { x: r(), y: r() })
-                // play sfx
-
-                // generate glass shatter drawing
-            });
+            setTimeout(c, 4000);
 
         }
     </script>
 </head>
 <body onload="finishedloading()">
+    
     <div id="loading">
         <div id="loader"></div>
     </div>
-    <div id="frosted-glass">
+    
+    <canvas id="frosted-glass">
         <h1 id="havefun">Have fun!</h1>
-    </div>
+    </canvas>
+    
     <div id="page" >
         
         <div class="spacer"></div>
@@ -89,80 +71,17 @@
         <a href="{{ url_for('contact') }}">Contact</a>
         <p>&& learn more about me</p>
         <a href="{{ url_for('about') }}">About</a>
+
     </div>
 
+    <script src=" {{ url_for('static', filename='js/glassSmash.js') }} "></script>
 
-
-    <!-- smooth scroll -->
-    <script>
-        gsap.registerPlugin(ScrollTrigger);
-        gsap.to(".spacer", {
-            scrollTrigger: {
-                trigger: "#page",
-                start: "top bottom",
-                end: "bottom bottom",
-                scrub: true,
-                pin: true,
-                id: "spacer"
-            },
-            y: -100,
-            opacity: 0
-        });
-
-    </script>
+    <!-- scroll -->
+    <script> gsap.registerPlugin(ScrollTrigger); </script>
 
     <!-- now we create the 3-d enviroment effect -->
-    <script src="https://unpkg.com/npm/three-orbitcontrols@2.110.3/OrbitControls.js"></script>
-    <script type="module">
-        import * as THREE from 'http://unpkg.com/three@0.126.1/build/three.module.js';
-        
-        let scene, camera, renderer;
-        function init() {
-            scene = new THREE.Scene();
-            
-            console.log(scene);
-            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            camera.position.set(0, 0, 5);
-            
-            renderer = new THREE.WebGLRenderer();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            document.body.appendChild(renderer.domElement);
+    <!-- <script src="https://unpkg.com/npm/three-orbitcontrols@2.110.3/OrbitControls.js"></script> -->
+    <!-- <script type="module" src="{{ url_for('static', filename='js/threebox.js') }}"></script> -->
 
-            let controls = new THREE.OrbitControls(camera, renderer.domElement);
-            controls.addEventListener('change', render);
-
-            window.addEventListener('resize', onWindowResize, false);
-            
-            let materialArray = [];
-            let imagepaths = ['corona_ft', 'corona_bk', 'corona_up', 'corona_dn', 'corona_rt', 'corona_lf'];
-            for (let i = 0; i < 6; i++) {
-                materialArray.push( new THREE.MeshBasicMaterial({
-                    map: new THREE.TextureLoader().load(imagepaths[i] + '.png'),
-                    side: THREE.DoubleSide
-                }));
-            }
-
-            let cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
-            let skybox = new THREE.Mesh(cube, materialArray);
-
-            scene.add(skybox);
-
-            render();
-
-            return scene, camera, renderer;
-        }
-        scene, camera, renderer = init();
-        function render() {
-            renderer.render(scene, camera);
-        }
-        function onWindowResize() {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        }
-        render();
-    </script>
-
-    
 </body>
 </html>

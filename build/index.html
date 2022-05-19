@@ -4,150 +4,84 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <!--- Load css. -->
-    <link type="text/css" rel="stylesheet" href="../static/css/portfolio.css" />
-    <!--- Load google marterial icons. -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" crossorigin>
-    <!--- Load javascript code -->
-    <script src="/static/js/script.js" crossorigin></script>
-    <script src="/static/js/uikit.js" crossorigin></script>
-    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/gsap-latest-beta.min.js"></script>
+    <title>Landing</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Icons&display=swap">
+    <link rel="stylesheet" href="/static/css/index.css">
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <script>
+        window.onload = function() {
+            window.style.cursor = 'wait';
+        }
+        function finishedloading() {
+            const tl = gsap.timeline({
+                pause: true,
+                defaults: { duration: 2 }
+            })
+            .to("#loading", { opacity: 0, scale: 3 })
+            .to("#page", { opacity: 1 }, "-=1.5");
+            console.log(tl);
+            tl.pause();
+            
+            a = () => {
+                document.getElementById("page").style.display = "flex";
+                tl.play();
+            }
+            b = () => {
+                document.getElementById("loading").style.display = "none";
+                gsap.to("#havefun", { opacity: 0, duration: 2 });
+            }
+            c = () => {
+                document.getElementById("havefun").style.display = "none";
+            }
+            setTimeout(a, 500);
+            setTimeout(b, 2500);
+            setTimeout(c, 4000);
+
+        }
+    </script>
 </head>
-<body>
-    <!-- navbar -->
-    <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
-        <div class="uk-navbar-center">
-            <ul class="uk-navbar-nav">
-                <li class="portfolio"><a href="/">Portfolio</a></li>
-                <li class="about"><a href="/about/">About</a></li>
-                <li class="contact"><a href="/contact/">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-    <!-- content -->
+<body onload="finishedloading()">
     
-
-
-<section class="main">
-    <div class="uk-visible-toggle" tabindex="-1" uk-slideshow>
-        <ul class="uk-slideshow-items">
-
-            
-            <li>
-
-                
-                <img class="left" src="https://s3.amazonaws.com/utep-uploads/wp-content/uploads/DUQ-MIG/2018/09/19122843/nurse-using-a-tablet.jpg" alt="CloudCure">
-                
-
-                <div class="right">
-                    <div class="links">
-                        
-                        <a href="https://github.com/CloudCure/CloudCure" target="_blank">
-                        <img src="https://img.icons8.com/color/github.png" alt="Github" />
-                        </a>
-                        
-                        
-                        <a href="https://example.com" target="_blank">
-                        <img src="https://img.icons8.com/color/cloud.png" alt="Live" />
-                        </a>
-                        
-                    </div>
-                    <h1 class="uk-slideshow-title">CloudCure</h1>
-                    <p class="uk-slideshow-description">Cloud Cure is a Web App which will allow a user to register as a nurse or a doctor, and provide patients with a medical diagnosis.         At Cloud Cure nurses will be able to login and fill out patient diagnosis forms. Doctors will be able to login and finalize patient diagnosis forms.         Afterwards a nurse/doctor will be able to print out the patient diagnosis form in order to provide continuous support for the patient.</p>
-                </div>
-
-            </li>
-            
-            <li>
-
-                
-                <img class="left" src="http://unsplash.it/800/800?gravity=center" alt="MyTube">
-                
-
-                <div class="right">
-                    <div class="links">
-                        
-                        <a href="https://github.com/BrianStinerGithub/MyTube" target="_blank">
-                        <img src="https://img.icons8.com/color/github.png" alt="Github" />
-                        </a>
-                        
-                        
-                    </div>
-                    <h1 class="uk-slideshow-title">MyTube</h1>
-                    <p class="uk-slideshow-description">MyTube is a copy of YouTube, made with Django and CSS. It is a video sharing website. It allows users to upload videos, and search for videos by title,         description, or tags. Users can also like, dislike, and comment on videos. Users can also follow other users and see their videos.</p>
-                </div>
-
-            </li>
-            
-            <li>
-
-                
-                <img class="left" src="http://unsplash.it/800/800?gravity=center" alt="TikTok Compilation Channel Bot">
-                
-
-                <div class="right">
-                    <div class="links">
-                        
-                        <a href="https://github.com/BrianStinerGithub/automated_youtube_channel" target="_blank">
-                        <img src="https://img.icons8.com/color/github.png" alt="Github" />
-                        </a>
-                        
-                        
-                    </div>
-                    <h1 class="uk-slideshow-title">TikTok Compilation Channel Bot</h1>
-                    <p class="uk-slideshow-description">TikTok Compilation ChannelBot is a Python script that scrapes TikTok videos based on a keyword and compiles them into a video.         The videos are then uploaded to a YouTube channel and a thumbnail is generated for each video. The script can be run as often as you want.</p>
-                </div>
-
-            </li>
-            
-
-        </ul>
-
-        <a class="uk-position-center-left uk-hidden-hover" href="#" uk-slidenav-previous
-            uk-slideshow-item="previous"></a>
-        <a class="uk-position-center-right uk-hidden-hover" href="#" uk-slidenav-next
-            uk-slideshow-item="next"></a>
+    <div id="loading">
+        <div id="loader"></div>
+    </div>
+    
+    <canvas id="frosted-glass">
+        <h1 id="havefun">Have fun!</h1>
+    </canvas>
+    
+    <div id="page" >
+        
+        <div class="spacer"></div>
+        <h1>Welcome to my chamber</h1>
+        <p>scroll down</p>
+        <div class="material-icons">arrow_downward</div>"
+        
+        <p>Hi my name is Brian</p>
+        <p>I'm a full-stack developer</p>
+        <p>who loves doing the impossible</p>
+        <div class="material-icons">vertical_distribute</div>
+        
+        <p>You can see my work</p>
+        <a href="/portfolio/">Portfolio</a>
+        <p>Get in contact with me</p>
+        <a href="/contact/">Contact</a>
+        <p>&& learn more about me</p>
+        <a href="/about/">About</a>
 
     </div>
-</section>
-<div class="spacer wave"></div>
-<div class="white blocktext">
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum unde repudiandae itaque suscipit veniam, explicabo blanditiis quibusdam. Consequuntur eligendi illum iusto totam distinctio temporibus, hic laudantium in, praesentium deleniti laborum!</p>
-    <label>
-        Pick a date &amp; time:
-        <input type="datetime-local" id="cal" />
-    </label>
-</div>
-<div class="spacer stacked-waves"></div>
-<div class="primary blocktext">
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum unde repudiandae itaque suscipit veniam, explicabo blanditiis quibusdam. Consequuntur eligendi illum iusto totam distinctio temporibus, hic laudantium in, praesentium deleniti laborum!</p>
-</div>
-<div class="spacer wave2"></div>
-<div class="light blocktext">
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum unde repudiandae itaque suscipit veniam, explicabo blanditiis quibusdam. Consequuntur eligendi illum iusto totam distinctio temporibus, hic laudantium in, praesentium deleniti laborum!</p>
-</div>
-<div class="spacer stacked-waves2"></div>
 
+    <script src=" /static/js/glassSmash.js "></script>
 
+    <!-- scroll -->
+    <script> gsap.registerPlugin(ScrollTrigger); </script>
 
-<script>
+    <!-- now we create the 3-d enviroment effect -->
+    <!-- <script src="https://unpkg.com/npm/three-orbitcontrols@2.110.3/OrbitControls.js"></script> -->
+    <!-- <script type="module" src="/static/js/threebox.js"></script> -->
 
-    window.addEventListener('load', () => {
-        const now = new Date();
-        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
-        now.setSeconds(0); 
-        now.setMilliseconds(0);
-        document.getElementById("cal").value = now.toISOString().slice(0, -1);
-    });
-
-</script>
-
-
-
-
-    <!-- footer -->
-    <footer class="uk-section uk-section-secondary uk-padding-remove-top black">
-    </footer>
 </body>
+</html>
