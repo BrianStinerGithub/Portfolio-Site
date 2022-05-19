@@ -6,11 +6,15 @@ const canvas = document.getElementById("frosted-glass"),
 		//              [log2(x) for x in range(2, 10)] +
 		//              [fibonacci(x) for x in range(6, 16)] +
 		//              [factorial(x) for x in range(2, 6)]
+        //
+        // Subpixel radiuses might be contributing to slowdowns.
 		0.3, 0.48, 0.6, 0.7, 0.78, 0.85, 0.9, 0.95, 1.0, 1.58, 2.0, 2.32, 2.58,
 		2.81, 3.0, 3.17, 5.0, 8.0, 13.0, 21.0, 34.0, 55.0, 89.0, 144.0, 2.0, 6.0,
 		24.0, 120.0,
 	],
-	sfx = new Audio("../../static/mp3/glassHit.mp3");
+    sfx = new Audio("../../static/mp3/glassHit.mp3");
+    context.lineWidth = 0.5;
+	context.strokeStyle = "black";
 
 
 
@@ -35,10 +39,13 @@ function createSmash(X, Y) {
 function drawRadialCracks(clickX, clickY) {
     console.log("Drawing radial cracks...");
 	
-    radiusList.forEach((r) => makeArc(clickX, clickY, r));
+    radiusList.forEach(
+        (r) => makeArc( clickX, clickY, r, (360 -r*2) )
+    );
 }
 
 // Lines from center out to the edge of the circle.
+// Completely exhausts the availangles list for the center point.
 function drawStarCracks(clickX, clickY) {
     console.log("Drawing star cracks...");
     
@@ -116,7 +123,7 @@ function eraseBlob(clickX, clickY) {
     }
 }
 
-
+// Math functions for finding angles and distances.
 function findDistance(point1, point2) {
     return Math.sqrt(
         Math.pow(Math.abs(point1.x - point2.x), 2) +
@@ -129,6 +136,8 @@ function findAngle(point1, point2) {
         Math.abs(point1.x - point2.x)
     );
 }
+
+// Drawing functions for making lines and arcs.
 function makeLine(x, y, angle, length) {
 	
     context.moveTo(x, y);
@@ -137,19 +146,16 @@ function makeLine(x, y, angle, length) {
     context.stroke();
     
 }
-function makeArc(x, y, r) {
+function makeArc(x, y, radius, length) {
 	
     angle = Math.random * Math.PI * 2;
-    sides = ((180 - r) * Math.PI) / 180;
-	context.beginPath();
-	context.arc(x, y, r, angle - sides, angle + sides, false);
+    console.log(angle);
+    sides = Math.round(length / 2) * Math.PI / 180;
+    console.log(sides);
+	context.arc(x, y, radius, angle - sides, angle + sides, false);
     context.stroke();
     
 }
-function pickFrom(list) {
-	return list[Math.floor(Math.random() * list.length)];
-}
-
 
 canvas.onmousedown = (e) => {
 	console.log("Mouse down...");
