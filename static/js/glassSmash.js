@@ -13,50 +13,63 @@ const canvas = document.getElementById("frosted-glass"),
 		24.0, 120.0,
 	],
     sfx = new Audio("../../static/mp3/glassHit.mp3");
-    context.lineWidth = 0.5;
+    context.lineWidth = 1;
 	context.strokeStyle = "black";
-
-
-
 console.log("Initializing...");
 // Fills list with numbers from 0 to 360. Saves me from typing it out.
 for (i = 0; i < 360; i++) {
     newAvailangles.push(i);
 }
 
+
+
+// ? This is the star of the show.
+//   The next four functions are labeled in order of complexity.
 function createSmash(X, Y) {
     console.log("Smashing!", X, Y);
 
-	drawRadialCracks(X, Y);     // Draw radial circular cracks that will match up with the long thin cracks
-	drawStarCracks(X, Y);       // Draw a lot long thin lines from center
-    generateCrackleWeb(X, Y);   // Draw bunch of really tiny shards near the center
-    // eraseBlob(X, Y);            // A blob shape made of 3 random circles near the center is fully punched out  
+	//drawRadialCracks(X, Y);         // Draw radial circular cracks that will match up with the long thin cracks
+	drawStarCracks(X, Y);           // Draw a lot long thin lines from center
+    //generateCrackleWeb(X, Y);       // Draw bunch of really tiny shards near the center
+    // eraseBlob(X, Y);               // A blob shape made of 3 random circles near the center is fully punched out  
 
 }
 
+
+
+// *    1    *
 // For every radius a random angle draws a circle with 
 // a missing piece proportional to the radius.
 function drawRadialCracks(clickX, clickY) {
-    console.log("Drawing radial cracks...");
-	
     radiusList.forEach(
         (r) => makeArc( clickX, clickY, r, (360 -r*2) )
     );
 }
 
+// *    2    *
 // Lines from center out to the edge of the circle.
 // Completely exhausts the availangles list for the center point.
 function drawStarCracks(clickX, clickY) {
+    
     console.log("Drawing star cracks...");
     
     const centerAvailangles = structuredClone(newAvailangles);
     while (centerAvailangles.length > 0) {
+
+        console.log("availangles:", centerAvailangles);
+        
         let angle = pickFrom(centerAvailangles);
-        centerAvailangles.splice(centerAvailangles.indexOf(angle - 5), 10);
-        makeLine(clickX, clickY, angle, (length = Math.random() * 180 + 180));
+        
+        console.log("angle:", angle);
+
+        removeChunkFromAvailangles(centerAvailangles, angle);
+
+        makeLine(clickX, clickY, angle, (Math.random() * 180 + 180));
+
     }
 }
 
+// *    3    *
 // Generate and draw 300 random branches of a spider web.
 // Each point is node with 360 degrees of available angles,
 // heretofore known as availangles.
@@ -73,32 +86,36 @@ function generateCrackleWeb(clickX, clickY) {
     
     const points = [];
     points.push( { x: clickX, y: clickY, availangles: structuredClone(newAvailangles) } );
+    
     for (i = 0; i < 300; i++) {
         point = pickFrom(points);
         
         if (point.availangles.length == 0) { i--; continue; } // If no availangles at point, reset and try again.
         pickedAngle = pickFrom(point.availangles);
-        point.availangles.splice(point.availangles.indexOf(angle - 5), 10);
+        removeChunkFromAvailangles(point.availangles, pickedAngle);
         
+
         makeLine(point.x, point.y, pickedAngle, 5); // (Math.random() * 5 + 10) ? random length
-        
+        const { newX, newY } = calcX2Y2(x, y, angle, length);
         // Add new point to points.
         // New points have the opposite angle of the previous point spliced out of their availangles.
-        points.push({
-            x: point.x + Math.cos( pickedAngle *Math.PI /180 ) *length,
-            y: point.y + Math.sin( pickedAngle *Math.PI /180 ) *length,
-            availangles: structuredClone( newAvailangles )
-                        .splice( newAvailangles.indexOf( pickedAngle +180 ) -5, 10)
-                        .splice( newAvailangles.indexOf( pickedAngle -180 ) -5, 10)
-        });
+        newPoint = { x: newX, y: newY, availangles: structuredClone(point.availangles) };
+        removeChunkFromAvailangles(newPoint.availangles, (pickedAngle + 180) % 360);
+        points.push(newPoint);
     }
 }
 
+
+// *    4    *
 // A blob is made of three semi-random arcs.
 // We choose three points around the center,
 // get the length of the line between them,
 // get the two angles to the center,
 // and draw the arcs with a minradius + a random amount.
+//
+// Use .arc to create a circular stroke and then use .clip() to make that the current clipping region.
+// Then you can use .clearRect() to erase the whole canvas, but only the clipped area will change.
+// context.clearRect(0, 0, canvas.width, canvas.height);
 function eraseBlob(clickX, clickY) {
     console.log("Erasing blob...");
     const blobPoints = [
@@ -123,7 +140,25 @@ function eraseBlob(clickX, clickY) {
     }
 }
 
-// Math functions for finding angles and distances.
+// Pick from a list.
+function pickFrom(list) {
+    return list[Math.floor(Math.random() * list.length)];
+}
+
+// Splice 10 to either side of angle if still there.
+removeChunkFromAvailangles = (availangles, angle) => {
+	for (i = -10; i <= 10; i++) {
+		availangles.splice(availangles.indexOf(angle + i), 1);
+	}
+};
+
+// Geometry functions for finding angles, points, and distances.
+calcX2Y2 = (x, y, angle, length) => {
+    return {
+        x2: x + Math.cos(angle * Math.PI / 180) * length,
+        y2: y + Math.sin(angle * Math.PI / 180) * length
+    };
+}
 function findDistance(point1, point2) {
     return Math.sqrt(
         Math.pow(Math.abs(point1.x - point2.x), 2) +
@@ -138,11 +173,14 @@ function findAngle(point1, point2) {
 }
 
 // Drawing functions for making lines and arcs.
-function makeLine(x, y, angle, length) {
-	
+makeLine = (x, y, angle, length) => {
+	const { x2, y2 } = calcX2Y2(x, y, angle, length);
+    
+    console.log("Drawing line from", x, y, "to", x2, y2);
+    
     context.moveTo(x, y);
     context.beginPath();
-	context.lineTo( x + (length * Math.cos(angle)), y + (length * Math.sin(angle)) );
+	context.lineTo( x2, y2 );
     context.stroke();
     
 }
@@ -157,10 +195,12 @@ function makeArc(x, y, radius, length) {
     
 }
 
+// Mouse click event triggers a sfx, screen shake, and createSmash()
 canvas.onmousedown = (e) => {
 	console.log("Mouse down...");
 	
     // play sfx
+    sfx.volume = 0.1;
     sfx.play();
     
 	// shake screen randomly 5 times quickly from -20 to 20, then return to normal
