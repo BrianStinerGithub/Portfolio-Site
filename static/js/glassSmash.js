@@ -175,13 +175,13 @@ canvas.onmousedown = (e) => {
 	const tl = new TimelineMax({
 		defaults: { duration: 0.04 },
 		onComplete: () => {
-			screen.style.transform = "translate(0px, 0px)";
+			canvas.style.transform = "translate(0px, 0px)";
 		},
-	})  .to(screen, { x: r(), y: r() })
-        .to(screen, { x: r(), y: r() })
-        .to(screen, { x: r(), y: r() })
-        .to(screen, { x: r(), y: r() })
-        .to(screen, { x: r(), y: r() });
+	})  .to(canvas, { x: r(), y: r() })
+        .to(canvas, { x: r(), y: r() })
+        .to(canvas, { x: r(), y: r() })
+        .to(canvas, { x: r(), y: r() })
+        .to(canvas, { x: r(), y: r() });
         
 
 	// get click x and y
