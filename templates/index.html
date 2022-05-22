@@ -27,7 +27,6 @@
             tl.pause();
             
             a = () => {
-                document.getElementById("page").style.display = "flex";
                 tl.play();
             }
             b = () => {
@@ -39,7 +38,7 @@
             }
             setTimeout(a, 500);
             setTimeout(b, 2500);
-            setTimeout(c, 4000);
+            setTimeout(c, 4500);
 
         }
     </script>
@@ -66,11 +65,11 @@
         <div class="material-icons">vertical_distribute</div>
         
         <p>You can see my work</p>
-        <a href="{{ url_for('portfolio') }}">Portfolio</a>
+        <div class="button"><a href="{{ url_for('portfolio') }}">Portfolio</a></div>
         <p>Get in contact with me</p>
-        <a href="{{ url_for('contact') }}">Contact</a>
+        <div class="button"><a href="{{ url_for('contact') }}">Contact</a></div>
         <p>&& learn more about me</p>
-        <a href="{{ url_for('about') }}">About</a>
+        <div class="button"><a href="{{ url_for('about') }}">About</a></div>
         <div class="spacer"></div>
 
     </div>
