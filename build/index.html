@@ -17,18 +17,13 @@
             window.style.cursor = 'wait';
         }
         function finishedloading() {
-            const tl = gsap.timeline({
-                pause: true,
-                defaults: { duration: 2 }
-            })
-            .to("#loading", { opacity: 0, scale: 3 })
-            .to("#page", { opacity: 1 }, "-=1.5");
-            console.log(tl);
-            tl.pause();
-            
+            // These are three timer functions playing animations to look nice.
+            // .5s loading delay, 2s fade in/out, and at 4s the words are gone.
             a = () => {
                 document.getElementById("page").style.display = "flex";
-                tl.play();
+                gsap.to("#loading", {duration: 2, opacity: 0, scale: 3 });
+                gsap.to("#page", {duration: 2, opacity: 1 }, "<"); // ? delay: .5, ?
+            //    tl.play(); // to see what this was go to bottom of file
             }
             b = () => {
                 document.getElementById("loading").style.display = "none";
@@ -88,4 +83,19 @@
     <!-- <script type="module" src="/static/js/threebox.js"></script> -->
 
 </body>
+<script>
+    // Comments section //
+
+    // For tl.play(); //
+    // // This defines the fade in/out animation for the loading twirl and the page.
+    // // Its paused at after its defined, so it can be played in a().
+    // const tl = gsap.timeline({
+    //     pause: true,
+    //     defaults: { duration: 2 }
+    // })
+    // .to("#loading", { opacity: 0, scale: 3 })
+    // .to("#page", { opacity: 1 }, "-=1.5");
+    // console.log(tl);
+    // tl.pause();
+</script>
 </html>
