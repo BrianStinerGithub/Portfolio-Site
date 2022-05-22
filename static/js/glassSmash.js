@@ -3,7 +3,7 @@ import {
     makeArc, makeLine,
     calcX2Y2, findAngle, findDistance,
     removeChunkFromAvailangles, pickFrom, range,
-    canvas, context, newAvailangles, init
+    canvas, context, newAvailangles, init, initEdges,
 } from "./glassSmashHelper.js";
 
 

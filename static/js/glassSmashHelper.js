@@ -1,7 +1,7 @@
 // All functions are exported at the bottom of the file.
 const canvas = document.getElementById("frosted-glass"),
     context = canvas.getContext("2d"),
-    newAvailangles = [];
+    newAvailangles = range(0, 360);
 
 function resizeCanvas() {
     console.log("resizing canvas...");
@@ -16,7 +16,7 @@ function resizeCanvas() {
 };
 
 import { checkCookie } from "./cookies.js";
-// check cookie for glassBroken, fill newAvailangles [0...360], and resize canvas
+// check cookie for glassBroken and resize canvas
 function init() {
 	console.log("Initializing...");
 
@@ -26,10 +26,6 @@ function init() {
 		document.body.style.overflowY = "visible";
 		document.getElementById("page").style.display = "flex";
 		canvas.style.display = "none";
-	}
-
-	for (i = 0; i < 360; i++) {
-		newAvailangles.push(i);
 	}
 
 	window.onresize = () => resizeCanvas();
@@ -88,6 +84,39 @@ function makeArc(x, y, radius, length) {
 	context.arc(x, y, radius, angle - sides, angle + sides, false);
 	context.stroke();
 }
+// availangles for edgePoints are 180 degrees towards the center of the screen.
+function initEdges(pointsPerEdge) {
+	console.log("Initializing edges...");
+	edgePoints = [];
+	for (let i = 0; i < pointsPerEdge; i++) {
+		// Top edge, X is random, Y is 0.
+		edgePoints.push({
+			X: Math.random() * canvas.width,
+			Y: 0,
+			availangles: range(180, 360),
+		});
+		// Right edge, X is canvas.width, Y is random.
+		edgePoints.push({
+			X: canvas.width,
+			Y: Math.random() * canvas.height,
+			availangles: range(90, 270),
+		});
+		// Bottom edge, X is random, Y is canvas.height.
+		edgePoints.push({
+			X: Math.random() * canvas.width,
+			Y: canvas.height,
+			availangles: range(0, 180),
+		});
+		// Left edge, X is 0, Y is random.
+		edgePoints.push({
+			X: 0,
+			Y: Math.random() * canvas.height,
+			availangles: range(0, 90) + range(270, 360),
+		});
+	}
+	return edgePoints;
+};
+
 
 
 export {
@@ -103,5 +132,6 @@ export {
     newAvailangles,
     canvas,
     context,
-    resizeCanvas,
+	resizeCanvas,
+	initEdges,
 };
