@@ -4,4 +4,4 @@ Built with [flask](https://flask.palletsprojects.com/en/1.1.x/), [jinja2](https:
 DevOps simply runs frozen_flask with github actions and deploys to github pages.
 Its a JAMtastic site that has a mini-game for firstcomers, a simple desctiption of me and links to my previous work, documents, and a contact page.
 
-Link to site: [here](https://example.com)
+Link to site: [here](https://brianstinergithub.github.io/Portfolio-Site)
