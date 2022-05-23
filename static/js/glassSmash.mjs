@@ -4,7 +4,7 @@ import {
     calcX2Y2, findAngle, findDistance,
     removeChunkFromAvailangles, pickFrom, range,
     canvas, context, newAvailangles, init, initEdges,
-} from "./glassSmashHelper.js";
+} from "./glassSmashHelper.mjs";
 
 
 const radiusList = [
