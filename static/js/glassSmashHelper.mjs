@@ -15,7 +15,7 @@ function resizeCanvas() {
 	console.log("canvas.height:", canvas.height);
 };
 
-import { checkCookie } from "./cookies.js";
+import { checkCookie } from "./cookies.mjs";
 // check cookie for glassBroken and resize canvas
 function init() {
 	console.log("Initializing...");
