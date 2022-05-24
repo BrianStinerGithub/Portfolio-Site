@@ -2,17 +2,12 @@ import {
     makeArc, makeLine,
     calcX2Y2, findAngle, findDistance,
     removeChunkFromAvailangles, pickFrom, range,
-    canvas, context, newAvailangles, init, initEdges,
-    setCookie,
+    canvas, context, newAvailangles, radiusList, timesSmashed,
+    init, initEdges, clickSFX, setCookie,
 } from "./glassSmashHelper.mjs";
 
 
-const radiusList = [
-        1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25, 35,
-        50, 90, 110,
-    ],
-    clickSFX = new Audio("../../static/mp3/glassHit.mp3"),
-    timesSmashed = 0;
+
 
 context.lineWidth = 1;
 context.strokeStyle = "black";

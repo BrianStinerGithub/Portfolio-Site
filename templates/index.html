@@ -9,24 +9,17 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Icons&display=swap">
     <link rel="stylesheet" href="static/css/index.css">
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
     <script>
         window.onload = function() {
-            window.style.cursor = 'wait';
+            document.style.cursor = 'wait';
         }
-        function finishedloading() {
-            const tl = gsap.timeline({
-                pause: true,
-                defaults: { duration: 2 }
-            })
-            .to("#loading", { opacity: 0, scale: 3 })
-            .to("#page", { opacity: 1 }, "-=1.5");
-            console.log(tl);
-            tl.pause();
-            
+        function finishedloading() {          
             a = () => {
-                tl.play();
+                document.getElementById('havefun').style.display = 'block';
+                gsap.to("#loading", { opacity: 0, scale: 3, duration: 2 });
+                gsap.to("#page", { opacity: 1 , duration: 2}, "-=1.5");
             }
             b = () => {
                 document.getElementById("loading").style.display = "none";
@@ -64,11 +57,11 @@
         <div class="material-icons">vertical_distribute</div>
         
         <p>You can see my work</p>
-        <div class="button"><a href="Portfolio-Site/portfolio">Portfolio</a></div>
+        <div class="button"><a href="/portfolio/">Portfolio</a></div>
         <p>Get in contact with me</p>
-        <div class="button"><a href="{{ url_for('contact') }}">Contact</a></div>
+        <div class="button"><a href="/contact/">Contact</a></div>
         <p>&& learn more about me</p>
-        <div class="button"><a href="{{ url_for('about') }}">About</a></div>
+        <div class="button"><a href="/about/">About</a></div>
         <div class="spacer"></div>
 
     </div>
