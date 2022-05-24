@@ -1,4 +1,6 @@
-// All functions are exported at the bottom of the file.
+import { setCookie, checkCookie } from "./cookies.mjs";
+
+// Export all at the bottom of the file.
 const canvas = document.getElementById("frosted-glass"),
     context = canvas.getContext("2d"),
     newAvailangles = range(0, 360);
@@ -15,7 +17,6 @@ function resizeCanvas() {
 	console.log("canvas.height:", canvas.height);
 };
 
-import { checkCookie } from "./cookies.mjs";
 // check cookie for glassBroken and resize canvas
 function init() {
 	console.log("Initializing...");
@@ -61,13 +62,13 @@ function findDistance(point1, point2) {
 		Math.pow(Math.abs(point1.x - point2.x), 2) +
 			Math.pow(Math.abs(point1.y - point2.y), 2)
 	);
-}
+};
 function findAngle(point1, point2) {
 	return Math.atan2(
 		Math.abs(point1.y - point2.y),
 		Math.abs(point1.x - point2.x)
 	);
-}
+};
 
 // Drawing functions for making lines and arcs.
 function makeLine(X1, Y1, X2, Y2) {
@@ -83,7 +84,7 @@ function makeArc(x, y, radius, length) {
 	console.log(sides);
 	context.arc(x, y, radius, angle - sides, angle + sides, false);
 	context.stroke();
-}
+};
 // availangles for edgePoints are 180 degrees towards the center of the screen.
 function initEdges(pointsPerEdge) {
 	console.log("Initializing edges...");
@@ -134,4 +135,5 @@ export {
     context,
 	resizeCanvas,
 	initEdges,
+	setCookie,
 };

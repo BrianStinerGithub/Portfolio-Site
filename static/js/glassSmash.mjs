@@ -1,9 +1,9 @@
-import { setCookie } from "./cookie.js";
 import {
     makeArc, makeLine,
     calcX2Y2, findAngle, findDistance,
     removeChunkFromAvailangles, pickFrom, range,
     canvas, context, newAvailangles, init, initEdges,
+    setCookie,
 } from "./glassSmashHelper.mjs";
 
 
@@ -11,7 +11,7 @@ const radiusList = [
         1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25, 35,
         50, 90, 110,
     ],
-    sfx = new Audio("../../static/mp3/glassHit.mp3"),
+    clickSFX = new Audio("../../static/mp3/glassHit.mp3"),
     timesSmashed = 0;
 
 context.lineWidth = 1;
@@ -181,10 +181,10 @@ function eraseBlob(clickX, clickY) {
     minRadius.push(findDistance(blobPoints[1], blobPoints[2]) / 2);
     minRadius.push(findDistance(blobPoints[2], blobPoints[0]) / 2);
 
-
+    const PIover2 = Math.PI / 2;
     context.beginPath();
     for (i = 0; i < 3; i++) {
-        context.arc(clickX, clickY, minRadius[i] + Math.random() * 100, blobAngles[i] - Math.PI / 2, blobAngles[i] + Math.PI / 2, false);
+        context.arc(clickX, clickY, minRadius[i] + Math.random() * 100, blobAngles[i] - PIover2, blobAngles[i] + PIover2, false);
     }
 }
 
@@ -194,7 +194,7 @@ canvas.onmousedown = (e) => {
     console.log("Mouse down...");
 
     // play sfx
-    sfx.cloneNode(true).play();
+    setTimeout(clickSFX.cloneNode(true).play(), 20);
 
     // generate glass shatter drawing
     createSmash(e.clientX, e.clientY);
@@ -203,16 +203,8 @@ canvas.onmousedown = (e) => {
     r = () => {
         return Math.floor(Math.random() * 40) - 20;
     };
-    const tl = new TimelineMax({
-        defaults: { duration: 0.04 },
-        onComplete: () => {
-            canvas.style.transform = "translate(0px, 0px)";
-        },
-    })
-        .to(canvas, { x: r(), y: r() })
-        .to(canvas, { x: r(), y: r() })
-        .to(canvas, { x: r(), y: r() })
-        .to(canvas, { x: r(), y: r() })
-        .to(canvas, { x: r(), y: r() });
-    tl.play();
+    for (let i = 0; i < 5; i++) {
+        gsap.to(canvas, { x: r(), y: r(), duration: 0.04 });
+    }
+    canvas.style.transform = "translate(0px, 0px)";
 }
