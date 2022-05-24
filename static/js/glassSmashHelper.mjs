@@ -3,7 +3,10 @@ import { setCookie, checkCookie } from "./cookies.mjs";
 // Export all at the bottom of the file.
 const canvas = document.getElementById("frosted-glass"),
     context = canvas.getContext("2d"),
-    newAvailangles = range(0, 360);
+	newAvailangles = range(0, 360),
+	radiusList = [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25, 35, 50, 90, 110],
+	clickSFX = new Audio("static/mp3/glassHit.mp3"),
+	timesSmashed = 0;
 
 function resizeCanvas() {
     console.log("resizing canvas...");
@@ -78,9 +81,9 @@ function makeLine(X1, Y1, X2, Y2) {
     context.stroke();
 };
 function makeArc(x, y, radius, length) {
-	angle = Math.random * Math.PI * 2;
+	const angle = Math.random * Math.PI * 2;
 	console.log(angle);
-	sides = (Math.round(length / 2) * Math.PI) / 180;
+	const sides = ( Math.round(length / 2) * (Math.PI / 180) );
 	console.log(sides);
 	context.arc(x, y, radius, angle - sides, angle + sides, false);
 	context.stroke();
@@ -121,18 +124,21 @@ function initEdges(pointsPerEdge) {
 
 
 export {
-    pickFrom,
-    removeChunkFromAvailangles,
-    calcX2Y2,
-    findDistance,
-    findAngle,
-    makeLine,
-    makeArc,
-    init,
-    range,
-    newAvailangles,
-    canvas,
-    context,
+	newAvailangles,
+	canvas,
+	context,
+	timesSmashed,
+	clickSFX,
+	radiusList,
+	pickFrom,
+	removeChunkFromAvailangles,
+	calcX2Y2,
+	findDistance,
+	findAngle,
+	makeLine,
+	makeArc,
+	init,
+	range,
 	resizeCanvas,
 	initEdges,
 	setCookie,
