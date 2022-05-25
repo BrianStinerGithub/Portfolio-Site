@@ -43,7 +43,7 @@ function pickFrom(list) {
 
 // Splice 10 to either side of angle if still there.
 function removeChunkFromAvailangles(availangles, angle, chunk) {
-	for (i = -1*chunk; i <= chunk; i++) {
+	for (let i = -1*chunk; i <= chunk; i++) {
 		availangles.splice(availangles.indexOf(angle + i), 1);
 	}
 };
@@ -56,20 +56,20 @@ function range(start, end) {
 // Three geometry functions for finding points, distances, and angles.
 function calcX2Y2(x, y, angle, length) {
 	return {
-		x2: x + Math.cos((angle * Math.PI) / 180) * length,
-		y2: y + Math.sin((angle * Math.PI) / 180) * length,
+		X2: x + Math.cos((angle * Math.PI) / 180) * length,
+		Y2: y + Math.sin((angle * Math.PI) / 180) * length,
 	};
 };
 function findDistance(point1, point2) {
 	return Math.sqrt(
-		Math.pow(Math.abs(point1.x - point2.x), 2) +
-			Math.pow(Math.abs(point1.y - point2.y), 2)
+		Math.pow(Math.abs(point1.X - point2.X), 2) +
+			Math.pow(Math.abs(point1.Y - point2.Y), 2)
 	);
 };
 function findAngle(point1, point2) {
 	return Math.atan2(
-		Math.abs(point1.y - point2.y),
-		Math.abs(point1.x - point2.x)
+		Math.abs(point1.Y - point2.Y),
+		Math.abs(point1.X - point2.X)
 	);
 };
 
@@ -81,12 +81,13 @@ function makeLine(X1, Y1, X2, Y2) {
     context.stroke();
 };
 function makeArc(x, y, radius, length) {
-	const angle = Math.random * Math.PI * 2;
-	console.log(angle);
+	const angle = (Math.random * Math.PI * 2);
 	const sides = ( Math.round(length / 2) * (Math.PI / 180) );
-	console.log(sides);
 	context.arc(x, y, radius, angle - sides, angle + sides, false);
 	context.stroke();
+	
+	console.log(angle);
+	console.log(sides);
 };
 // availangles for edgePoints are 180 degrees towards the center of the screen.
 function initEdges(pointsPerEdge) {
