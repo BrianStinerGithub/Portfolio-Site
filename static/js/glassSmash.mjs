@@ -2,7 +2,7 @@ import {
     makeArc, makeLine,
     calcX2Y2, findAngle, findDistance,
     removeChunkFromAvailangles, pickFrom, range,
-    canvas, context, newAvailangles, radiusList, timesSmashed,
+    canvas, context, newAvailangles, timesSmashed,
     init, initEdges, clickSFX, setCookie,
 } from "./glassSmashHelper.mjs";
 
@@ -58,11 +58,10 @@ function createSmash(X, Y) {
     // eraseBlob(X, Y);               // A blob shape made of 3 random circles near the center is fully punched out  
 
     timesSmashed++;
-    if (timesSmashed >= 5) { setTimeout(() => edgeCracks(), 500); }
     console.log("timesSmashed:", timesSmashed);
-    if (timesSmashed >= 10) {
-        shatterGlass();
-    }
+
+    if (timesSmashed >= 5) { setTimeout(() => edgeCracks(), 500); }
+    if (timesSmashed >= 10) { shatterGlass(); }
 
 }
 
@@ -73,8 +72,9 @@ function createSmash(X, Y) {
 // a missing piece proportional to the radius.
 function drawRadialCracks(clickX, clickY) {
     console.log("Drawing radial cracks...");
+    const radiusList = [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25, 35, 50, 90, 110];
     radiusList.forEach(
-        (r) => makeArc(clickX, clickY, r, (360 - r * 3), makeArc(clickX, clickY, r, (360 - r * 3)))
+        (r) => makeArc( clickX, clickY, r, (360 - r * 3) )
     );
 }
 
