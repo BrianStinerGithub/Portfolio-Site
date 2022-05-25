@@ -84,7 +84,6 @@ function makeArc(x, y, radius, length) {
 	const sides = ( Math.round(length / 2) * (Math.PI / 180) );
 	context.arc(x, y, radius, angle - sides, angle + sides, false);
 	context.stroke();
-	
 	console.log(angle);
 	console.log(sides);
 };
