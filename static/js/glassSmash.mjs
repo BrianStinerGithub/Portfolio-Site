@@ -84,13 +84,14 @@ function drawRadialCracks(clickX, clickY) {
 function drawStarCracks(clickX, clickY) {
     console.log("Drawing star cracks...");
 
-    const centerAvailangles = structuredClone(newAvailangles);
+    const centerAvailangles = range(0, 360);
+    let angle, X2, Y2;
     while (centerAvailangles.length > 1) {
     
-        const angle = pickFrom(centerAvailangles);
-        removeChunkFromAvailangles(centerAvailangles, angle);
+        angle = pickFrom(centerAvailangles);
+        centerAvailangles = removeChunkFromAvailangles(centerAvailangles, angle, 10);
 
-        const { X2, Y2 } = calcX2Y2(clickX, clickY, angle, Math.floor(Math.random() * 60) + 100);
+        ( X2, Y2 ) = calcX2Y2(clickX, clickY, angle, Math.floor(Math.random() * 60) + 100);
         makeLine(clickX, clickY, X2, Y2);
 
     }

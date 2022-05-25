@@ -40,11 +40,12 @@ function pickFrom(list) {
 	return list[Math.floor(Math.random() * list.length)];
 }
 
-// Splice 10 to either side of angle if still there.
+// Splice chunck to either side of angle if still there.
 function removeChunkFromAvailangles(availangles, angle, chunk) {
 	for (let i = -1*chunk; i <= chunk; i++) {
 		availangles.splice(availangles.indexOf(angle + i), 1);
 	}
+	return availangles;
 };
 function range(start, end) {
 	return Array(end - start + 1)
