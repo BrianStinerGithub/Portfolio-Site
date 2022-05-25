@@ -6,9 +6,6 @@ import {
     init, initEdges, clickSFX, setCookie,
 } from "./glassSmashHelper.mjs";
 
-
-
-
 context.lineWidth = 1;
 context.strokeStyle = "black";
 
@@ -17,7 +14,7 @@ init();
 function edgeCracks() {
     const pointsPerEdge = 20;
     if (edgePoints.length == 0) {
-        edgePoints = initEdges(pointsPerEdge);
+        var edgePoints = initEdges(pointsPerEdge);
         return;
     }
 
