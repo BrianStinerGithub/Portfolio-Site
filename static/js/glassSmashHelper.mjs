@@ -4,7 +4,6 @@ import { setCookie, checkCookie } from "./cookies.mjs";
 const canvas = document.getElementById("frosted-glass"),
     context = canvas.getContext("2d"),
 	newAvailangles = range(0, 360),
-	radiusList = [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25, 35, 50, 90, 110],
 	clickSFX = new Audio("static/mp3/glassHit.mp3"),
 	timesSmashed = 0;
 
