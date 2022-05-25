@@ -80,7 +80,7 @@ function makeLine(X1, Y1, X2, Y2) {
     context.stroke();
 };
 function makeArc(x, y, radius, length) {
-	const angle = (Math.random * Math.PI * 2);
+	const angle = (Math.random() * Math.PI * 2);
 	const sides = ( Math.round(length / 2) * (Math.PI / 180) );
 	context.arc(x, y, radius, angle - sides, angle + sides, false);
 	context.stroke();
