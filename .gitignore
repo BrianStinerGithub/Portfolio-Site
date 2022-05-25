@@ -4,5 +4,4 @@ Include/
 pyvenv.cfg
 *.pyc
 __pycache__/
-build/
 node_modules/

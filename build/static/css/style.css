@@ -1,0 +1,80 @@
+@import url("uikit.css");
+:root {
+    --white-color: #ffffff;
+    --black-color: #000000;
+    --dark-color: #2c3e50;
+    --lighter-color: #ecf0f1;
+    --light-color: #bdc3c7;
+    --primary-color: #3498db;
+    --secondary-color: #34495e;
+    --glass-color: rgba(250, 250, 250, 0.25);
+    accent-color: var(--primary-color);
+    color-scheme: var(--light-color) var(--dark-color) var(--black-color);
+    overflow-x: hidden;
+}
+.primary {
+    background-color: var(--primary-color);
+}
+.secondary {
+    background-color: var(--secondary-color);
+}
+.white {
+    background-color: var(--white-color);
+}
+.black {
+    background-color: var(--black-color);
+}
+.dark {
+    background-color: var(--dark-color);
+}
+.lighter {
+    background-color: var(--lighter-color);
+}
+.light {
+    background-color: var(--light-color);
+}
+.glass {
+    background-color: var(--glass-color);
+}
+
+.uk-navbar-container {
+    background-color: var(--dark-color);
+    height: 8vh;
+    margin-bottom: -.1em;
+    border-bottom: 1px solid var(--primary-color);
+    overflow: hidden;
+}
+ul.uk-navbar-nav>li, ul.uk-navbar-nav>li>a {
+    width: 100px;
+    min-height: min-content;
+}
+ul.uk-navbar-nav>li>a {
+    height: 8vh;
+}
+
+
+
+section.sociallinks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1em;
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+}
+
+section.sociallinks > div {
+    border-radius: 10px;
+    width: 100px;
+    height: 100px;
+    transition: 0.2s;
+    display: block;
+    margin: auto;
+}
+
+section.sociallinks > div:hover {
+    filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.308));
+    transform: rotate(-5deg);
+}
+
+

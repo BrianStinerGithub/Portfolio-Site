@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Icons&display=swap">
+    <link rel="stylesheet" href="static/css/index.css">
+    
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <script>
+        window.onload = function() {
+            document.style.cursor = 'wait';
+        }
+        function finishedloading() {          
+            a = () => {
+                document.getElementById('havefun').style.display = 'block';
+                gsap.to("#loading", { opacity: 0, scale: 3, duration: 2 });
+                gsap.to("#page", { opacity: 1 , duration: 2}, "-=1.5");
+            }
+            b = () => {
+                document.getElementById("loading").style.display = "none";
+                gsap.to("#havefun", { opacity: 0, duration: 2 });
+            }
+            c = () => {
+                document.getElementById("havefun").style.display = "none";
+            }
+            setTimeout(a, 500);
+            setTimeout(b, 2500);
+            setTimeout(c, 4500);
+
+        }
+    </script>
+</head>
+<body onload="finishedloading()">
+    
+    <div id="loading">
+        <div id="loader"></div>
+    </div>
+    
+    <canvas id="frosted-glass">
+        <h1 id="havefun">Have fun!</h1>
+    </canvas>
+    
+    <div id="page" >
+        
+        <div class="spacer"></div>
+        <h1>Welcome to my website</h1>
+        <div class="material-icons">arrow_downward</div>
+        
+        <p>Hi my name is Brian</p>
+        <p>I'm a full-stack developer</p>
+        <p>who loves doing the impossible</p>
+        <div class="material-icons">vertical_distribute</div>
+        
+        <p>You can see my work</p>
+        <div class="button"><a href="/portfolio/">Portfolio</a></div>
+        <p>Get in contact with me</p>
+        <div class="button"><a href="/contact/">Contact</a></div>
+        <p>&& learn more about me</p>
+        <div class="button"><a href="/about/">About</a></div>
+        <div class="spacer"></div>
+
+    </div>
+    
+
+    <script type="module" src="static/js/glassSmash.mjs" ></script>
+
+    <!-- scroll -->
+    <!-- <script> 
+        gsap.registerPlugin(ScrollTrigger); 
+    </script> -->
+
+    <!-- now we create the 3-d enviroment effect -->
+    <!-- <script src="https://unpkg.com/npm/three-orbitcontrols@2.110.3/OrbitControls.js"></script> -->
+    <!-- <script type="module" src="/static/js/threebox.js"></script> -->
+
+</body>
+</html>
