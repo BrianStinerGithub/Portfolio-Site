@@ -129,7 +129,6 @@ export {
 	context,
 	timesSmashed,
 	clickSFX,
-	radiusList,
 	pickFrom,
 	removeChunkFromAvailangles,
 	calcX2Y2,
