@@ -1,5 +1,12 @@
 {
   "dependencies": {
     "three": "^0.140.2"
-  }
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^28.1.1"
+  },
+  "type": "module"
 }
