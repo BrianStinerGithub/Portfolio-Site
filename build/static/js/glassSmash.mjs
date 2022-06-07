@@ -2,12 +2,40 @@ import {
     makeArc, makeLine,
     calcX2Y2, findAngle, findDistance,
     removeChunkFromAvailangles, pickFrom, range,
-    canvas, context, newAvailangles, timesSmashed,
-    init, initEdges, clickSFX, setCookie,
-} from "./glassSmashHelper.mjs";
+    init, initEdges, setCookie,
+} from "./glassSmashHelper.js";
 
+const canvas = document.getElementById("frosted-glass"),
+	context = canvas.getContext("2d"),
+	newAvailangles = range(0, 360),
+	clickSFX = new Audio("static/mp3/glassHit.mp3"),
+    timesSmashed = 0;
+    
 context.lineWidth = 1;
 context.strokeStyle = "black";
+
+function resizeCanvas() {
+	const temp = context.getImageData(0, 0, canvas.width, canvas.height);
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
+	context.putImageData(temp, 0, 0);
+}
+
+// check cookie for glassBroken and resize canvas
+function init() {
+	console.log("Initializing...");
+
+	if (checkCookie("glassBroken=true")) {
+		console.log("Cookie found. Glass has been smashed.");
+		// enable scroll, show page, and remove the glass
+		document.body.style.overflowY = "visible";
+		document.getElementById("page").style.display = "flex";
+		canvas.style.display = "none";
+	}
+
+	window.onresize = () => resizeCanvas();
+	resizeCanvas();
+}
 
 init();
 
@@ -85,13 +113,12 @@ function drawStarCracks(clickX, clickY) {
     console.log("Drawing star cracks...");
 
     const centerAvailangles = range(0, 360);
-    let angle, X2, Y2;
     while (centerAvailangles.length > 1) {
     
-        angle = pickFrom(centerAvailangles);
+        const angle = pickFrom(centerAvailangles);
         centerAvailangles = removeChunkFromAvailangles(centerAvailangles, angle, 10);
 
-        ( X2, Y2 ) = calcX2Y2(clickX, clickY, angle, Math.floor(Math.random() * 60) + 100);
+        const { X2, Y2 } = calcX2Y2(clickX, clickY, angle, Math.floor(Math.random() * 60) + 100);
         makeLine(clickX, clickY, X2, Y2);
 
     }
